@@ -1,73 +1,113 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Weekly Project Portfolio | Nichula Sathmith Wasalathilaka</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Allura&family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="css/style.css" />
-  </head>
-  <body>
-    <nav class="navbar" aria-label="Primary">
-      <div class="nav-container">
-        <a class="brand signature-mark" href="index.html">Research Portfolio</a>
-        <button class="nav-toggle" type="button" aria-label="Toggle navigation">
-          Menu
-        </button>
-        <ul class="nav-menu">
-          <li><a class="nav-link" href="index.html">Home</a></li>
-          <li class="dropdown">
-            <button class="dropdown-toggle" type="button">Weeks</button>
-            <ul class="dropdown-menu">
-              <li><a class="nav-link" href="week1.html">Week 1</a></li>
-              <li><a class="nav-link" href="week2.html">Week 2</a></li>
-              <li><a class="nav-link" href="week3.html">Week 3</a></li>
-              <li><a class="nav-link" href="week4.html">Week 4</a></li>
-              <li><a class="nav-link" href="week5.html">Week 5</a></li>
-              <li><a class="nav-link" href="week6.html">Week 6</a></li>
-              <li><a class="nav-link" href="week7.html">Week 7</a></li>
-              <li><a class="nav-link" href="week8.html">Week 8</a></li>
-              <li><a class="nav-link" href="week9.html">Week 9</a></li>
-              <li><a class="nav-link" href="week10.html">Week 10</a></li>
-              <li><a class="nav-link" href="week11.html">Week 11</a></li>
-              <li><a class="nav-link" href="week12.html">Week 12</a></li>
-              <li><a class="nav-link" href="week13.html">Week 13</a></li>
-            </ul>
-          </li>
-        </ul>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weekly Project Portfolio | Nichula Sathmith Wasalathilaka</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+  <!-- Antigravity Canvas -->
+  <canvas id="antigravity-canvas"></canvas>
+
+  <nav class="navbar" aria-label="Primary">
+    <div class="nav-container">
+      <a class="brand signature-mark" href="index.html">Nichula</a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation">
+        Menu
+      </button>
+      <ul class="nav-menu">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li class="dropdown">
+          <button class="dropdown-toggle" type="button">Weekly Progress</button>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link" href="week1.html">Week 1</a></li>
+            <li><a class="nav-link" href="week2.html">Week 2</a></li>
+            <li><a class="nav-link" href="week3.html">Week 3</a></li>
+            <li><a class="nav-link" href="week4.html">Week 4</a></li>
+            <li><a class="nav-link" href="week5.html">Week 5</a></li>
+            <li><a class="nav-link" href="week6.html">Week 6</a></li>
+            <li><a class="nav-link" href="week7.html">Week 7</a></li>
+            <li><a class="nav-link" href="week8.html">Week 8</a></li>
+            <li><a class="nav-link" href="week9.html">Week 9</a></li>
+            <li><a class="nav-link" href="week10.html">Week 10</a></li>
+            <li><a class="nav-link" href="week11.html">Week 11</a></li>
+            <li><a class="nav-link" href="week12.html">Week 12</a></li>
+            <li><a class="nav-link" href="week13.html">Week 13</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main-content" class="home-main">
+    <section class="hero" id="home">
+      <div class="hero-inner reveal">
+        <p class="hero-kicker">Academic Research Portfolio</p>
+        <h1 class="hero-title">Remote Sensing of the Environment</h1>
+        <p class="hero-subtitle">
+          An undergraduate electronic engineering final year project focused
+          on remote sensing-based environmental monitoring and change
+          detection using Sri Lankan Cyclone Dithwa imagery.
+        </p>
+        <div class="hero-actions">
+          <a class="cta-button" href="#about-project">Learn More</a>
+          <a class="ghost-button" href="week1.html">Weekly Progress</a>
+        </div>
       </div>
-    </nav>
+    </section>
 
-    <main id="main-content">
+    <section class="section section-light" id="about-me">
       <div class="container">
-        <section class="hero-grid">
-          <article class="card profile-card reveal">
-            <img
-              class="profile-photo"
-              src="assets/profile.jpg"
-              alt="Profile photo of Nichula Sathmith Wasalathilaka"
-            />
-            <div class="profile-meta">
-              <h1>Nichula Sathmith Wasalathilaka</h1>
-              <p><strong>Registration No:</strong> E/20/425</p>
-              <p>Department of Electrical and Electronics Engineering</p>
-              <p>University of Peradeniya</p>
-              <div class="meta-chips">
-                <span>Week 1 - 13</span>
-                <span>Remote Sensing</span>
-                <span>Change Detection</span>
-              </div>
+        <h2 class="section-heading">About Me</h2>
+        <div class="about-grid">
+          <div class="about-photo reveal">
+            <img class="profile-photo profile-photo-large" src="assets/profile.jpeg"
+              alt="Profile photo of Nichula Sathmith Wasalathilaka" />
+          </div>
+          <article class="about-card card reveal">
+            <h3 class="section-title">Nichula Sathmith Wasalathilaka</h3>
+            <p class="lead"><strong>Registration No:</strong> E/20/425</p>
+            <p class="lead">Final Year Undergraduate</p>
+            <p class="lead">Department of Electrical and Electronics Engineering</p>
+            <p class="lead">University of Peradeniya</p>
+            <div class="meta-chips">
+              <span>Remote Sensing</span>
+              <span>Change Detection</span>
+              <span>Week 1 - 13</span>
             </div>
+            <ul class="detail-list">
+              <li>
+                <strong>Focus:</strong> Environmental monitoring and change
+                detection using satellite imagery.
+              </li>
+              <li>
+                <strong>Study Area:</strong> Sri Lankan cyclone-affected regions
+                and surrounding landscapes.
+              </li>
+              <li>
+                <strong>Outcome:</strong> Weekly research documentation and a
+                curated change detection dataset.
+              </li>
+            </ul>
           </article>
+        </div>
+      </div>
+    </section>
 
-          <article class="card reveal">
-            <span class="highlight">Project Summary</span>
-            <h2 class="section-title">Remote Sensing of the Environment</h2>
+    <section class="section section-dark" id="about-project">
+      <div class="container">
+        <h2 class="section-heading">About the Project</h2>
+        <div class="project-grid">
+          <article class="project-copy reveal">
+            <h3 class="section-title">Remote Sensing of the Environment</h3>
             <p class="lead">
               This project focuses on remote sensing-based environmental
               monitoring.
@@ -105,15 +145,101 @@
               </li>
             </ul>
           </article>
-        </section>
+          <div class="project-media reveal">
+            <div class="media-frame" role="img" aria-label="Placeholder remote sensing imagery">
+              <span>Remote sensing imagery placeholder</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section section-light" id="project-details">
+      <div class="container">
+        <h2 class="section-heading">Project Details</h2>
+        <div class="detail-stack">
+          <article class="card detail-card reveal">
+            <h3>Research Objectives</h3>
+            <p>
+              Establish a reliable change detection dataset and evaluate how
+              different algorithms perform on Sri Lankan cyclone imagery.
+            </p>
+          </article>
+          <article class="card detail-card reveal">
+            <h3>Data & Study Area</h3>
+            <p>
+              Multi-temporal satellite scenes are organized around cyclone
+              impact zones to capture environmental change patterns over time.
+            </p>
+          </article>
+          <article class="card detail-card reveal">
+            <h3>Expected Outputs</h3>
+            <p>
+              A cleaned dataset, baseline evaluation results, and visual
+              summaries that support a final academic report.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
 
-        
+    <section class="section section-dark" id="contact">
+      <div class="container contact-grid">
+        <div class="contact-card reveal">
+          <p class="eyebrow">Contact</p>
+          <h2 class="section-title">Academic Inquiries</h2>
+          <p class="lead">
+            Update the contact details below with your preferred academic
+            channels.
+          </p>
 
-    <footer>
-      <p>Academic Research Portfolio | Department of EEE</p>
-      <span class="signature">Nichula</span>
-    </footer>
+          <div class="contact-links">
+            <!-- Email -->
+            <a href="mailto:e20425@eng.pdn.ac.lk" class="contact-btn" aria-label="Email">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+              <span>Email Me</span>
+            </a>
 
-    <script src="js/script.js"></script>
-  </body>
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/nichula-wasalathilaka/" target="_blank" rel="noopener noreferrer"
+              class="contact-btn" aria-label="LinkedIn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+                <rect width="4" height="12" x="2" y="9" />
+                <circle cx="4" cy="4" r="2" />
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/nichula01" target="_blank" rel="noopener noreferrer" class="contact-btn"
+              aria-label="GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path
+                  d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4" />
+                <path d="M9 18c-4.51 2-5-2-7-2" />
+              </svg>
+              <span>GitHub</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Academic Research Portfolio | Department of EEE</p>
+    <span class="signature">Nichula</span>
+  </footer>
+
+  <!-- GSAP for Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
 </html>

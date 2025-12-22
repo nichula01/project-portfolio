@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Week 1 - Cyclone Dithwah | Nichula Sathmith Wasalathilaka</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Allura&family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+
+  <nav class="navbar" aria-label="Primary">
+    <div class="nav-container">
+      <a class="brand signature-mark" href="index.html">Nichula</a>
+      <button class="nav-toggle" type="button" aria-label="Toggle navigation">
+        Menu
+      </button>
+      <ul class="nav-menu">
+        <li><a class="nav-link" href="index.html">Home</a></li>
+        <li class="dropdown">
+          <button class="dropdown-toggle active" type="button" aria-expanded="true">Weekly Progress</button>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link active" href="week1.html" aria-current="page">Week 1</a></li>
+            <li><a class="nav-link" href="week2.html">Week 2</a></li>
+            <li><a class="nav-link" href="week3.html">Week 3</a></li>
+            <li><a class="nav-link" href="week4.html">Week 4</a></li>
+            <li><a class="nav-link" href="week5.html">Week 5</a></li>
+            <li><a class="nav-link" href="week6.html">Week 6</a></li>
+            <li><a class="nav-link" href="week7.html">Week 7</a></li>
+            <li><a class="nav-link" href="week8.html">Week 8</a></li>
+            <li><a class="nav-link" href="week9.html">Week 9</a></li>
+            <li><a class="nav-link" href="week10.html">Week 10</a></li>
+            <li><a class="nav-link" href="week11.html">Week 11</a></li>
+            <li><a class="nav-link" href="week12.html">Week 12</a></li>
+            <li><a class="nav-link" href="week13.html">Week 13</a></li>
+          </ul>
+        </li>
+        <li><a class="nav-link" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container reveal">
+        <p class="eyebrow">Week 1</p>
+        <h1 class="hero-title">Cyclone Dithwah: Satellite Data Exploration & Dataset Creation</h1>
+        <p class="lead">
+          Survey of affected areas, satellite selection, problems, solutions, sample dataset and manual annotations.
+        </p>
+      </div>
+    </section>
+
+    <section class="section section-light" id="overview">
+      <div class="container">
+        <h2 class="section-heading">Overview</h2>
+        <div class="card reveal">
+          <p>
+            I searched for areas affected by Cyclone Dithwah, explored satellite data sources, and decided that
+            Sentinel-2 imagery accessed via Google Earth Engine (GEE) was the best choice for this project. Following
+            this selection, I started collecting data to begin our change-detection experiments.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="resources">
+      <div class="container">
+        <h2 class="section-heading">Resources & Satellites</h2>
+        <div class="card reveal">
+          <ul class="detail-list">
+            <li>
+              <strong>Platform:</strong> Google Earth Engine (GEE)
+            </li>
+            <li>
+              <strong>Satellite:</strong> Sentinel-2 (S2)
+            </li>
+            <li>
+              <strong>Reference:</strong> I referred to the Medium article on Gamma Earth S2DR3 - Sentinel-2 Deep
+              Resolution 3.0:
+              <br>
+              <a href="https://medium.com/@ya_71389/sentinel-2-deep-resolution-3-0-c71a601a2253" target="_blank"
+                rel="noopener noreferrer" style="color: var(--primary); text-decoration: underline;">
+                https://medium.com/@ya_71389/sentinel-2-deep-resolution-3-0-c71a601a2253
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="problems">
+      <div class="container">
+        <h2 class="section-heading">Problems Encountered</h2>
+        <div class="gallery-grid reveal">
+          <figure class="lightbox-trigger">
+            <img src="assets/problem_lowres.png" alt="Low-resolution Sentinel-2 crop of 1 km square area">
+            <figcaption>Low spatial resolution when using 1 km² tiles</figcaption>
+          </figure>
+          <figure class="lightbox-trigger">
+            <img src="assets/problem_clouds.png" alt="Satellite image with heavy clouds obscuring ground">
+            <figcaption>Frequent heavy cloud cover during the study period</figcaption>
+          </figure>
+          <figure class="lightbox-trigger">
+            <img src="assets/problem_composite_fail.png"
+              alt="Composite process error and inconsistent visual artifacts">
+            <figcaption>Cloud-compositing failed for some dates/tiles</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="solutions">
+      <div class="container">
+        <h2 class="section-heading">How I Solved Those</h2>
+        <div class="card reveal">
+          <p class="mb-4">
+            To reduce cloud effects I looked back 30 days and selected the least-cloudy image to use as the pre-image.
+            To address resolution limits I experimented with <a
+              href="https://medium.com/@ya_71389/sentinel-2-deep-resolution-3-0-c71a601a2253" target="_blank"
+              style="color: var(--primary);">Gamma Earth S2DR3 (Sentinel-2 Deep Resolution 3.0)</a>.
+          </p>
+
+          <div class="comparison-grid mb-4">
+            <figure class="lightbox-trigger">
+              <img src="assets/deep_before.png" alt="Original Sentinel-2 patch before applying deep resolution">
+              <figcaption>Sentinel-2 original (pre) — before deep resolution</figcaption>
+            </figure>
+            <figure class="lightbox-trigger">
+              <img src="assets/deep_after.png" alt="Sentinel-2 patch after applying deep resolution (S2DR3)">
+              <figcaption>Gamma Earth S2DR3 applied — after deep resolution</figcaption>
+            </figure>
+          </div>
+
+          <div class="code-block-wrapper">
+            <div class="code-header">
+              <span>Code used to apply / test S2DR3</span>
+              <button class="copy-btn" aria-label="Copy code">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                  <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                </svg>
+                Copy
+              </button>
+            </div>
+            <div class="code-content">
+              <pre><code class="language-python">
+import cv2
+import matplotlib.pyplot as plt
+
+model_path = Path('EDSR_x4.pb')
+if not model_path.exists():
+    raise FileNotFoundError('Model weights missing. Run the setup cell above.')
+
+# Load image in RGB
+image = cv2.cvtColor(cv2.imread(str(input_path)), cv2.COLOR_BGR2RGB)
+
+# Create super-resolution model (EDSR x4)
+sr = cv2.dnn_superres.DnnSuperResImpl_create()
+sr.readModel(str(model_path))
+sr.setModel('edsr', 4)
+upscaled = sr.upsample(image)
+
+output_path = Path(f"{input_path.stem}_upscaled_x4.png")
+cv2.imwrite(str(output_path), cv2.cvtColor(upscaled, cv2.COLOR_RGB2BGR))
+print(f'Saved: {output_path.resolve()}')
+# Show before/after comparison
+fig, ax = plt.subplots(1, 2, figsize=(12, 6))
+ax[0].imshow(image)
+ax[0].axis('off')
+ax[0].set_title('Original')
+ax[1].imshow(upscaled)
+ax[1].axis('off')
+ax[1].set_title('Upscaled x4')
+plt.tight_layout()
+plt.show()
+
+if files is not None:
+    files.download(str(output_path))
+</code></pre>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="dataset">
+      <div class="container">
+        <h2 class="section-heading">Sample Dataset & Visualizations</h2>
+        <p class="lead reveal">I created a sample dataset of 10 pre/post images as a proof-of-concept. Below are 3 pairs
+          shown for visualization.</p>
+
+        <div class="comparison-container reveal">
+          <!-- Pair 1 -->
+          <div class="comparison-pair">
+            <figure class="lightbox-trigger">
+              <img src="assets/pair1_pre.png" alt="Pre-event satellite imagery sample 1">
+              <span class="img-label">Pre</span>
+            </figure>
+            <figure class="lightbox-trigger">
+              <img src="assets/pair1_post.png" alt="Post-event satellite imagery sample 1">
+              <span class="img-label">Post</span>
+            </figure>
+          </div>
+
+          <!-- Pair 2 -->
+          <div class="comparison-pair">
+            <figure class="lightbox-trigger">
+              <img src="assets/pair2_pre.png" alt="Pre-event satellite imagery sample 2">
+              <span class="img-label">Pre</span>
+            </figure>
+            <figure class="lightbox-trigger">
+              <img src="assets/pair2_post.png" alt="Post-event satellite imagery sample 2">
+              <span class="img-label">Post</span>
+            </figure>
+          </div>
+
+          <!-- Pair 3 -->
+          <div class="comparison-pair">
+            <figure class="lightbox-trigger">
+              <img src="assets/pair3_pre.png" alt="Pre-event satellite imagery sample 3">
+              <span class="img-label">Pre</span>
+            </figure>
+            <figure class="lightbox-trigger">
+              <img src="assets/pair3_post.png" alt="Post-event satellite imagery sample 3">
+              <span class="img-label">Post</span>
+            </figure>
+          </div>
+
+          <!-- Pair 4 -->
+          <div class="comparison-pair">
+            <figure class="lightbox-trigger">
+              <img src="assets/pair4_pre.png" alt="Pre-event satellite imagery sample 4">
+              <span class="img-label">Pre</span>
+            </figure>
+            <figure class="lightbox-trigger">
+              <img src="assets/pair4_post.png" alt="Post-event satellite imagery sample 4">
+              <span class="img-label">Post</span>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-dark" id="annotations">
+      <div class="container">
+        <h2 class="section-heading">Manual Annotations</h2>
+        <p class="lead reveal">I manually annotated 2 images during the week as a quick experiment.</p>
+
+        <div class="gallery-stack reveal">
+          <div class="gallery-grid" style="margin-top: 0; width: 100%;">
+            <figure class="lightbox-trigger">
+              <img src="assets/annotated_collage_1.png" alt="Annotated collage part 1">
+            </figure>
+            <figure class="lightbox-trigger">
+              <img src="assets/annotated_collage_2.png" alt="Annotated collage part 2">
+            </figure>
+          </div>
+          <p style="margin-top: -1.5rem; color: var(--text-muted); font-size: 0.9rem;">Annotated sample — collage
+            variations</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-light" id="next-steps">
+      <div class="container">
+        <h2 class="section-heading">Next Week Plan</h2>
+        <div class="card reveal">
+          <ul class="detail-list">
+            <li>
+              Collect Sentinel-2 data for 10 km² tiles (instead of 1 km²) to improve context.
+            </li>
+            <li>
+              Collect pre / on / post images for the event using 30-day least-cloud sampling for pre-images.
+            </li>
+            <li>
+              Scale up annotation and automate cloudy-image filtering.
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>Academic Research Portfolio | Department of EEE</p>
+    <div class="footer-refs mt-4" style="margin-top: 1rem; font-size: 0.9em; opacity: 0.7;">
+      <p>References:</p>
+      <ul style="list-style: none;">
+        <li>Gamma Earth S2DR3 reference used in experiments.</li>
+        <li>Google Earth Engine (Sentinel-2)</li>
+      </ul>
+    </div>
+    <span class="signature">Nichula</span>
+  </footer>
+
+  <!-- Lightbox Overlay -->
+  <div id="lightbox" class="lightbox">
+    <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+    <div class="lightbox-content">
+      <img src="" alt="" id="lightbox-img">
+      <p id="lightbox-caption"></p>
+    </div>
+  </div>
+
+  <!-- GSAP for Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>
