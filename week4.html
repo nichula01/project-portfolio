@@ -47,39 +47,94 @@
     <main id="main-content">
       <div class="container">
         <header class="page-hero reveal">
-          <p class="eyebrow">Weekly Progress</p>
-          <h1>Week 4 - Project Progress</h1>
+          <p class="eyebrow">Week 4 · Annotation & Literature</p>
+          <h1>Getting Hands-On with Annotation and Research</h1>
           <p class="lead">
-            Placeholder summary for Week 4. Replace this with the key focus of
-            the week.
+            Week 4 centered on mastering our group’s annotation portal, documenting each screen capture, and digesting remote sensing datasets plus unsupervised change detection papers.
           </p>
         </header>
 
-        <section class="week-grid">
-          <article class="card reveal">
-            <h2>Objectives</h2>
-            <p>Placeholder text describing the goals for Week 4.</p>
-          </article>
+        <section class="section section-light section--compact" id="annotation-tool">
+          <div class="card reveal">
+            <h2>Dataset Annotation Interface</h2>
+            <p>
+              I spent the week getting familiar with the collaborative change detection annotation tool developed by the team.
+              The interface keeps the collection, labeling, and export steps centralized so future change-detection models start with clean ground truth.
+            </p>
+            <div class="repo-card" style="margin-top: 1.5rem;">
+              <div>
+                <p>
+                  The portal lives at the link below and supports toggling between pre/post scenes, drawing change masks, and exporting JSON labels.
+                </p>
+              </div>
+              <a class="ghost-button repo-card-link" href="https://piratheepan22.github.io/Dataset-Annotation/" target="_blank" rel="noopener">
+                <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                  <path fill="currentColor" d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 11.5H13v3.5h-2v-3.5H7.5v-2H11V7.5h2v3H16.5v2z"/>
+                </svg>
+                Open Annotation Tool
+              </a>
+            </div>
+            <div class="gallery-grid reveal" style="margin-top: 1.5rem;">
+              <figure>
+                <img src="assets/app.png" alt="Screenshot of the annotation portal interface">
+                <figcaption>Annotation portal overview</figcaption>
+              </figure>
+              <figure>
+                <img src="assets/app1.png" alt="Annotating an image in the dataset tool">
+                <figcaption>Annotating a change mask</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
 
-          <article class="card reveal">
-            <h2>Work Done</h2>
-            <p>Placeholder text summarizing completed tasks and activities.</p>
-          </article>
+        <section class="section section-dark section--compact" id="dataset-literature">
+          <div class="card reveal">
+            <h2>Remote Sensing Dataset Papers</h2>
+            <p>
+              I reviewed the two published dataset papers that live in the `papers/` folder.
+              These readings provided insights into the sensor setups, label schemes, and evaluation splits that frame our annotations.
+            </p>
+            <ul class="detail-list" style="margin-top: 1rem;">
+              <li>
+                <strong>WHU-CD dataset paper</strong> – <a href="papers/whucd.pdf" target="_blank" rel="noopener">Download whucd.pdf</a> to revisit the tile statistics, building change metrics, and the open benchmarks that inspired our workflow. The same article is available through the MDPI Remote Sensing website at <a href="https://doi.org/10.3390/rs17020178" target="_blank" rel="noopener">https://doi.org/10.3390/rs17020178</a>.
+              </li>
+              <li>
+                <strong>Second dataset paper</strong> – <a href="papers/second.pdf" target="_blank" rel="noopener">Download second.pdf</a> for details on the sensor fusion experiments and the publicly released masks referenced in our weekly notes. Its publisher page on IEEE Xplore is at <a href="https://doi.org/10.1109/TGRS.2024.3425815" target="_blank" rel="noopener">https://doi.org/10.1109/TGRS.2024.3425815</a>.
+              </li>
+            </ul>
+            <figure class="media-frame reveal" style="margin-top: 1.5rem;">
+              <img src="assets/remote_sensing.png" alt="Remote sensing literature illustration">
+              <figcaption>Survey of remote sensing dataset literature.</figcaption>
+            </figure>
+          </div>
+        </section>
 
-          <article class="card reveal">
-            <h2>Tools / Methods Used</h2>
-            <p>Placeholder text listing software, datasets, or methodologies.</p>
-          </article>
-
-          <article class="card reveal">
-            <h2>Results / Observations</h2>
-            <p>Placeholder text highlighting findings or interim outputs.</p>
-          </article>
-
-          <article class="card reveal">
-            <h2>Next Week Plan</h2>
-            <p>Placeholder text outlining the plan for the next week.</p>
-          </article>
+        <section class="section section-light section--compact" id="unsupervised-study">
+          <div class="card reveal">
+            <h2>Studying Unsupervised Change Detection</h2>
+            <p>
+              Inspired by the Remote Sens. 2024 paper <em>An Unsupervised Remote Sensing Image Change Detection Method Based on RVMamba and Posterior Probability Space Change Vector</em>,
+              I followed the same “Open Access Article” structure (title, authors, DOI, submission dates) to keep the metadata intact.
+              The paper introduces the RFCC framework built on UCVAPS and outlines how RVMamba and CSBN remove the need for heavy user tuning.
+            </p>
+            
+            <ul class="detail-list" style="margin-top: 1rem;">
+              <li>UCVAPS extends CVAPS to avoid radiometric correction and classification drift by normalizing change magnitudes before thresholding.</li>
+              <li>RVMamba feature clustering provides high-quality segments that feed the CSBN module with training samples for the posterior probability estimation.</li>
+              <li>Fuzzy C-means decomposes mixed pixels, while the CSBN brings spatial context so the final change-magnitude map works well on HRRS imagery.</li>
+            </ul>
+            <p>
+              The paper is stored at <code>papers/unsupervised.pdf</code> and demonstrates how a combination of unsupervised segmentation and Bayesian inference can outperform supervised baselines on seven datasets.
+            </p>
+            <figure class="media-frame reveal" style="margin-top: 1.5rem;">
+              <object data="papers/unsupervised.pdf" type="application/pdf" width="100%" height="360">
+                <p>
+                  Unsupervised change detection paper: <a href="papers/unsupervised.pdf" target="_blank" rel="noopener">Download unsupervised.pdf</a>
+                </p>
+              </object>
+              <figcaption>Remote Sens. 2024: RFCC (RVMamba, FCM, CSBN) for UCVAPS.</figcaption>
+            </figure>
+          </div>
         </section>
       </div>
     </main>

@@ -259,6 +259,14 @@ h4 {
   z-index: 1;
 }
 
+.section--compact {
+  padding: 4rem 0;
+}
+
+.card + .card {
+  margin-top: 1rem;
+}
+
 .hero {
   min-height: 100vh;
   display: flex;
@@ -419,6 +427,39 @@ h4 {
   content: '→';
   position: absolute;
   left: 0;
+  color: var(--primary);
+}
+
+.detail-citation {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.25rem;
+}
+
+.detail-citation dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 0.75rem 1.5rem;
+}
+
+.detail-citation dt {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.25rem;
+}
+
+.detail-citation dd {
+  margin: 0;
+  color: var(--text-main);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.detail-citation a {
   color: var(--primary);
 }
 
