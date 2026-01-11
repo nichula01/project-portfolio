@@ -47,39 +47,205 @@
     <main id="main-content">
       <div class="container">
         <header class="page-hero reveal">
-          <p class="eyebrow">Weekly Progress</p>
-          <h1>Week 2 - Project Progress</h1>
+          <p class="eyebrow">Week 2 · Kelani River Dataset</p>
+          <h1>Familiarizing with Google Earth Engine</h1>
           <p class="lead">
-            Placeholder summary for Week 2. Replace this with the key focus of
-            the week.
+            This week I dove into the Google Earth Engine interface to collect RGB imagery for
+            the Kelani River flood-prone corridor. The focus was on learning how to navigate the
+            workspace, capture metadata, and archive 20 representative scenes for our baseline dataset.
           </p>
         </header>
 
-        <section class="week-grid">
-          <article class="card reveal">
-            <h2>Objectives</h2>
-            <p>Placeholder text describing the goals for Week 2.</p>
-          </article>
+        <section class="section section-light" id="gee-familiarization">
+          <div class="card reveal">
+            <h2>Exploring the GEE Interface</h2>
+            <p>
+              I mapped the Kelani River flood-prone area inside GEE, toggled between
+              Sentinel-2 composites, and annotated the layers that highlight vegetation and water coverage.
+              This hands-on exploration helped me compile consistent RGB exports that carry the same scale and projection.
+            </p>
+            <figure class="media-frame" style="margin-top: 1.5rem;">
+              <img src="assets/GEE.png" alt="Google Earth Engine workspace showing Kelani River study area">
+              <figcaption>Google Earth Engine map view with the Kelani River flood-prone areas.</figcaption>
+            </figure>
+          </div>
+        </section>
 
-          <article class="card reveal">
-            <h2>Work Done</h2>
-            <p>Placeholder text summarizing completed tasks and activities.</p>
-          </article>
+        <section class="section section-dark" id="metadata">
+          <div class="card reveal">
+            <h2>Geo-Documented Evidence</h2>
+            <p>
+              Every capture is tagged with longitude, latitude, and area descriptors so the dataset can
+              be traced back to the original collection context. The reference document below summarizes
+              the first 20 RGB tiles and their spatial anchors within the Kelani River basin.
+            </p>
+            <figure class="media-frame reveal" style="margin-top: 1.5rem;">
+              <img src="assets/metadata.png" alt="Document snapshot with longitude, latitude, and area for Kelani River captures">
+              <figcaption>Documented locations featuring longitude, latitude, and flood-prone area notes.</figcaption>
+            </figure>
+          </div>
+        </section>
 
-          <article class="card reveal">
-            <h2>Tools / Methods Used</h2>
-            <p>Placeholder text listing software, datasets, or methodologies.</p>
-          </article>
 
-          <article class="card reveal">
-            <h2>Results / Observations</h2>
-            <p>Placeholder text highlighting findings or interim outputs.</p>
-          </article>
+        <section class="section section-light" id="image-collection">
+          <div class="container">
+            <h2 class="section-heading">Captured Image Triplets</h2>
+            <p class="lead">
+              Some sample triplets from the collected dataset are shown below.
+            <div class="triplet-table-wrapper reveal">
+              <table class="triplet-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Triplet</th>
+                    <th scope="col">Before</th>
+                    <th scope="col">On</th>
+                    <th scope="col">After</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="triplet-label-row">
+                    <th colspan="3">6.952809 · 79.899801</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <figure>
+                        <img src="assets/BEFORE_E425_01.png" alt="Triplet 1 before">
+                        <figcaption>Before</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/ON_E425_01.png" alt="Triplet 1 on">
+                        <figcaption>On</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/AFTER_E425_01.png" alt="Triplet 1 after">
+                        <figcaption>After</figcaption>
+                      </figure>
+                    </td>
+                  </tr>
+                  <tr class="triplet-label-row">
+                    <th colspan="3">6.956416 · 79.881735</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <figure>
+                        <img src="assets/BEFORE_E425_02.png" alt="Triplet 2 before">
+                        <figcaption>Before</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/ON_E425_02.png" alt="Triplet 2 on">
+                        <figcaption>On</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/AFTER_E425_02.png" alt="Triplet 2 after">
+                        <figcaption>After</figcaption>
+                      </figure>
+                    </td>
+                  </tr>
+                  <tr class="triplet-label-row">
+                    <th colspan="3">6.972434 · 79.87843</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <figure>
+                        <img src="assets/BEFORE_E425_03.png" alt="Triplet 3 before">
+                        <figcaption>Before</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/ON_E425_03.png" alt="Triplet 3 on">
+                        <figcaption>On</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/AFTER_E425_03.png" alt="Triplet 3 after">
+                        <figcaption>After</figcaption>
+                      </figure>
+                    </td>
+                  </tr>
+                  <tr class="triplet-label-row">
+                    <th colspan="3">6.948493 · 79.906282</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <figure>
+                        <img src="assets/BEFORE_E425_04.png" alt="Triplet 4 before">
+                        <figcaption>Before</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/ON_E425_04.png" alt="Triplet 4 on">
+                        <figcaption>On</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/AFTER_E425_04.png" alt="Triplet 4 after">
+                        <figcaption>After</figcaption>
+                      </figure>
+                    </td>
+                  </tr>
+                  <tr class="triplet-label-row">
+                    <th colspan="3">6.958376 · 79.925079</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <figure>
+                        <img src="assets/BEFORE_E425_05.png" alt="Triplet 5 before">
+                        <figcaption>Before</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/ON_E425_05.png" alt="Triplet 5 on">
+                        <figcaption>On</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/AFTER_E425_05.png" alt="Triplet 5 after">
+                        <figcaption>After</figcaption>
+                      </figure>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
 
-          <article class="card reveal">
-            <h2>Next Week Plan</h2>
-            <p>Placeholder text outlining the plan for the next week.</p>
-          </article>
+        <section class="section section-dark" id="gie-code">
+          <div class="card reveal">
+            <h2>Code That Captures the RGB Results</h2>
+            <p>
+              I captured the exact GEE script inside the interface. Instead of embedding every line, refer to the annotated screenshot below.
+            </p>
+            <figure class="media-frame reveal" style="margin-top: 1rem;">
+              <img src="assets/code.png" alt="Screenshot of the GEE JavaScript code used for exporting RGB tiles">
+              <figcaption>Captured GEE script showing exports, filtering, and visualization settings.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section section-light" id="next-steps">
+          <div class="card reveal">
+            <h2>Next Week Target</h2>
+            <p>
+              Build on the momentum by capturing 30 more triplets, expanding both the spatial coverage of the Kelani
+              basin and the dataset volume. I also aim to explore cloud-removal routines, comparing GEE's QA60 masking
+              with custom median composites to reduce noise before the change-detection experiments begin.
+            </p>
+          </div>
         </section>
       </div>
     </main>
