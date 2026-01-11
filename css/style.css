@@ -911,6 +911,19 @@ footer {
   margin-top: 0.25rem;
 }
 
+.repo-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  font-weight: 600;
+}
+
+.repo-card-link svg {
+  width: 1.3rem;
+  height: 1.3rem;
+  color: currentColor;
+}
+
 .code-content {
   padding: 1.25rem;
   overflow-x: auto;
