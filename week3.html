@@ -50,8 +50,9 @@
           <p class="eyebrow">Weekly Progress</p>
           <h1>Week 3 - Project Progress</h1>
           <p class="lead">
-            Placeholder summary for Week 3. Replace this with the key focus of
-            the week.
+            
+            This week focused on expanding the Sentinel-2 triplet dataset with new flood-prone areas
+            and developing a cloud-removal environment using deep learning techniques.
           </p>
         </header>
 
@@ -89,19 +90,19 @@
                 <tr>
                   <td>
                     <figure>
-                      <img src="assets/BEFORE_E425_01.png" alt="Kelani before">
+                      <img src="assets/BEFORE_kalaniya.png" alt="Kelani before">
                       <figcaption>Before</figcaption>
                     </figure>
                   </td>
                   <td>
                     <figure>
-                      <img src="assets/ON_E425_01.png" alt="Kelani on">
+                      <img src="assets/ON_kalaniya.png" alt="Kelani on">
                       <figcaption>On</figcaption>
                     </figure>
                   </td>
                   <td>
                     <figure>
-                      <img src="assets/AFTER_E425_01.png" alt="Kelani after">
+                      <img src="assets/AFTER_kalaniya.png" alt="Kelani after">
                       <figcaption>After</figcaption>
                     </figure>
                   </td>
@@ -112,19 +113,19 @@
                 <tr>
                   <td>
                     <figure>
-                      <img src="assets/BEFORE_E425_02.png" alt="Mahaweli before">
+                      <img src="assets/BEFORE_trinco.png" alt="Mahaweli before">
                       <figcaption>Before</figcaption>
                     </figure>
                   </td>
                   <td>
                     <figure>
-                      <img src="assets/ON_E425_02.png" alt="Mahaweli on">
+                      <img src="assets/ON_trinco.png" alt="Mahaweli on">
                       <figcaption>On</figcaption>
                     </figure>
                   </td>
                   <td>
                     <figure>
-                      <img src="assets/AFTER_E425_02.png" alt="Mahaweli after">
+                      <img src="assets/AFTER_trinco.png" alt="Mahaweli after">
                       <figcaption>After</figcaption>
                     </figure>
                   </td>
@@ -135,19 +136,19 @@
                 <tr>
                   <td>
                     <figure>
-                      <img src="assets/BEFORE_E425_03.png" alt="Negombo before">
+                      <img src="assets/BEFORE_trinco.png" alt="Negombo before">
                       <figcaption>Before</figcaption>
                     </figure>
                   </td>
                   <td>
                     <figure>
-                      <img src="assets/ON_E425_03.png" alt="Negombo on">
+                      <img src="assets/ON_trinco.png" alt="Negombo on">
                       <figcaption>On</figcaption>
                     </figure>
                   </td>
                   <td>
                     <figure>
-                      <img src="assets/AFTER_E425_03.png" alt="Negombo after">
+                      <img src="assets/AFTER_trinco.png" alt="Negombo after">
                       <figcaption>After</figcaption>
                     </figure>
                   </td>
@@ -188,6 +189,117 @@
               </object>
               <figcaption>DSen2-CR paper (cloud.pdf) describing the residual network, SAR fusion, and cloud-adaptive loss.</figcaption>
             </figure>
+          </div>
+        </section>
+
+        <section class="section section-dark" id="cloud-results">
+          <div class="card reveal">
+            <h2>Cloud-Removal Results</h2>
+            <p>
+              Each row below captures the cloud mask, raw optical tile, brightness-stretched input, and the predicted cloud-free output for a single scene.
+              Displaying these four stages together makes it easier to see how the network propagates surface detail as clouds are removed.
+            </p>
+            <div class="triplet-table-wrapper reveal">
+              <table class="triplet-table">
+                <thead>
+                  <tr>
+                    <th>Cloud Mask</th>
+                    <th>Raw Input</th>
+                    <th>Brightness-Stretched Input</th>
+                    <th>Predicted Cloud-Free</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="triplet-label-row">
+                    <th colspan="4">Set 1 </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <figure>
+                        <img src="assets/cloudmask1.png" alt="Cloud mask for set 1">
+                        <figcaption>cloudmask1.png</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/input1.png" alt="Raw Sentinel-2 tile for set 1">
+                        <figcaption>input1.png</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/inputbr1.png" alt="Brightness-enhanced input for set 1">
+                        <figcaption>inputbr1.png</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/inputpred1.png" alt="Predicted cloud-free output for set 1">
+                        <figcaption>inputpred1.png</figcaption>
+                      </figure>
+                    </td>
+                  </tr>
+                  <tr class="triplet-label-row">
+                    <th colspan="4">Set 2 </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <figure>
+                        <img src="assets/cloudmask2.png" alt="Cloud mask for set 2">
+                        <figcaption>cloudmask2.png</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/input2.png" alt="Raw Sentinel-2 tile for set 2">
+                        <figcaption>input2.png</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/inputbr2.png" alt="Brightness-enhanced input for set 2">
+                        <figcaption>inputbr2.png</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/inputpred2.png" alt="Predicted cloud-free output for set 2">
+                        <figcaption>inputpred2.png</figcaption>
+                      </figure>
+                    </td>
+                  </tr>
+                  <tr class="triplet-label-row">
+                    <th colspan="4">Set 3 </th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <figure>
+                        <img src="assets/cloudmask3.png" alt="Cloud mask for set 3">
+                        <figcaption>cloudmask3.png</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/inpu3t.png" alt="Raw Sentinel-2 tile for set 3 (typo preserved)">
+                        <figcaption>inpu3t.png</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/inputbr3.png" alt="Brightness-enhanced input for set 3">
+                        <figcaption>inputbr3.png</figcaption>
+                      </figure>
+                    </td>
+                    <td>
+                      <figure>
+                        <img src="assets/inputpred3.png" alt="Predicted cloud-free output for set 3">
+                        <figcaption>inputpred3.png</figcaption>
+                      </figure>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </section>
       </div>
