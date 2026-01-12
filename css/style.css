@@ -830,43 +830,11 @@ footer {
   margin-top: 3rem;
 }
 
-.annotation-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.5rem;
-}
-
-.annotation-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  padding: 1.3rem;
+.triplet-grid {
   display: flex;
   flex-direction: column;
-  gap: 0.7rem;
+  gap: 1.25rem;
 }
-
-.annotation-card h3 {
-  font-size: 1.2rem;
-  margin: 0;
-  font-weight: 600;
-  color: var(--text-main);
-  letter-spacing: -0.01em;
-}
-
-.annotation-card__summary {
-  color: var(--text-muted);
-  font-size: 0.95rem;
-  line-height: 1.4;
-}
-
-.annotation-card__note {
-  color: var(--text-muted);
-  font-size: 0.75rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-}
-
 .triplet-row {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -901,10 +869,6 @@ footer {
 }
 
 @media (max-width: 640px) {
-  .annotation-grid {
-    grid-template-columns: 1fr;
-  }
-
   .triplet-row {
     grid-template-columns: 1fr;
   }
