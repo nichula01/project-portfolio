@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Week 6 - Project Progress</title>
+    <title>Week 6 - Project Progress (MSI Expansion)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,7 +11,120 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Small, page-local styling for code + tables (keeps your base theme intact) -->
+    <style>
+      .code-block {
+        margin: 0.75rem 0 0;
+        padding: 1rem 1.1rem;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.45);
+        overflow-x: auto;
+        line-height: 1.55;
+        font-size: 0.92rem;
+      }
+      .code-block code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        white-space: pre;
+      }
+      .inline-note {
+        margin-top: 0.5rem;
+        opacity: 0.9;
+        font-size: 0.95rem;
+      }
+      .media {
+        margin-top: 0.75rem;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.18);
+      }
+      .media img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .media figcaption {
+        padding: 0.75rem 0.9rem;
+        font-size: 0.95rem;
+        opacity: 0.9;
+      }
+      .table-wrap {
+        overflow-x: auto;
+        margin-top: 0.75rem;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.18);
+      }
+      table.band-table {
+        width: 100%;
+        border-collapse: collapse;
+        min-width: 720px;
+      }
+      table.band-table th,
+      table.band-table td {
+        padding: 0.75rem 0.85rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        text-align: left;
+        vertical-align: top;
+      }
+      table.band-table th {
+        font-weight: 600;
+        opacity: 0.95;
+      }
+      .pill {
+        display: inline-block;
+        padding: 0.25rem 0.55rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        font-size: 0.85rem;
+        margin-right: 0.4rem;
+      }
+      .resource-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        margin-right: 0.75rem;
+        margin-top: 0.35rem;
+      }
+      .content-stack {
+        display: grid;
+        gap: 1.25rem;
+      }
+      .content-block {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .content-block:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .content-block h3 {
+        margin-bottom: 0.6rem;
+      }
+      .content-block ul,
+      .content-block ol {
+        margin-left: 1.2rem;
+      }
+      .content-block ul {
+        list-style: disc;
+      }
+      .content-block ol {
+        list-style: decimal;
+      }
+      .content-block ul ul {
+        list-style: circle;
+        margin-top: 0.3rem;
+      }
+      .content-block li {
+        margin: 0.35rem 0;
+      }
+    </style>
   </head>
+
   <body>
     <nav class="navbar" aria-label="Primary">
       <div class="nav-container">
@@ -50,36 +163,249 @@
           <p class="eyebrow">Weekly Progress</p>
           <h1>Week 6 - Project Progress</h1>
           <p class="lead">
-            Placeholder summary for Week 6. Replace this with the key focus of
-            the week.
+            This week I expanded the dataset from RGB-only triplets to RGB + Sentinel-2 MSI
+            triplets. I also built a cloud-aware GEE export flow for 13-band GeoTIFF patches.
           </p>
         </header>
 
-        <section class="week-grid">
-          <article class="card reveal">
-            <h2>Objectives</h2>
-            <p>Placeholder text describing the goals for Week 6.</p>
-          </article>
+        <!-- Core week summary -->
+        <section class="section" aria-label="Week 6 highlights">
+          <div class="section-heading">
+            <p class="eyebrow">At a glance</p>
+            <h2>MSI coverage boost</h2>
+            <p class="lead">
+              Main progress, tools, and next steps from the MSI expansion work.
+            </p>
+          </div>
+          <div class="content-stack">
+            <section class="content-block reveal">
+              <h3>Objectives</h3>
+              <ul>
+                <li>Extend the dataset from RGB-only to include Sentinel-2 MSI triplets.</li>
+                <li>Build a stable cloud-aware export workflow in Google Earth Engine.</li>
+                <li>Document why MSI bands improve change detection.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Work Done</h2>
-            <p>Placeholder text summarizing completed tasks and activities.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Work Done</h3>
+              <ul>
+                <li>Added aligned 13-band Sentinel-2 triplets for the same RGB events.</li>
+                <li>Used cloud probability + valid-pixel checks for image selection.</li>
+                <li>Exported fixed-size cloud-optimized GeoTIFF patches.</li>
+                <li>Reviewed one Sentinel-2 urban change paper for feature ideas.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Tools / Methods Used</h2>
-            <p>Placeholder text listing software, datasets, or methodologies.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Tools / Methods Used</h3>
+              <ul>
+                <li><span class="pill">Google Earth Engine</span> Sentinel-2 MSI retrieval + export.</li>
+                <li><span class="pill">COPERNICUS/S2_HARMONIZED</span> multispectral imagery.</li>
+                <li><span class="pill">COPERNICUS/S2_CLOUD_PROBABILITY</span> cloud probability filtering.</li>
+                <li>Window-based selection: Before, On (or nearest), After.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Results / Observations</h2>
-            <p>Placeholder text highlighting findings or interim outputs.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Results / Observations</h3>
+              <ul>
+                <li>Each event can now include both RGB and MSI triplets.</li>
+                <li>MSI adds red-edge, NIR, and SWIR cues not present in RGB.</li>
+                <li>Quality filtering is critical, especially for the On-date image.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Next Week Plan</h2>
-            <p>Placeholder text outlining the plan for the next week.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Next Week Plan</h3>
+              <ul>
+                <li>Batch export MSI triplets for more events.</li>
+                <li>Compute indices such as NDVI, NDWI, and NBR.</li>
+                <li>Confirm RGB and MSI footprint alignment.</li>
+              </ul>
+            </section>
+          </div>
+        </section>
+
+        <!-- MSI export details -->
+        <section
+          class="section"
+          aria-label="MSI pipeline details"
+          id="msi-pipeline"
+        >
+          <div class="section-heading">
+            <p class="eyebrow">Pipeline deep dive</p>
+            <h2 id="msi-pipeline-heading">Cloud-aware Sentinel-2 exports</h2>
+            <p class="lead">
+              Short overview of setup, export logic, and why MSI bands help.
+            </p>
+          </div>
+          <div class="content-stack">
+            <section class="content-block reveal">
+              <h3>GEE Setup (MSI Export Interface)</h3>
+              <p>
+                Screenshot of the GEE setup used to export 13-band Sentinel-2 MSI triplets.
+              </p>
+              <figure class="media">
+                <img
+                  src="assets/msi_GEE.png"
+                  alt="Google Earth Engine interface used to configure multispectral Sentinel-2 export settings"
+                  loading="lazy"
+                />
+                <figcaption>
+                  <strong>Figure:</strong> GEE configuration for exporting Sentinel-2 multispectral triplets (Before / On / After).
+                </figcaption>
+              </figure>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>GEE Export Snippet (Reduced)</h3>
+              <p>
+                Short version of the GEE script for selecting and exporting MSI triplets.
+              </p>
+              <pre class="code-block"><code>// Sentinel-2 MSI triplet export (short version)
+var targetDate = ee.Date('2025-11-30');
+var preLookbackDays = 90, postForwardDays = 10, nearestDays = 3;
+var outCRS = 'EPSG:32644', outScale = 10, exportDimensions = '316x316';
+var outFolder = 'dataset';
+var exportUtm = /* your fixed patch geometry */;
+var s2Bands13 = ['B1','B2','B3','B4','B5','B6','B7','B8','B8A','B9','B10','B11','B12'];
+
+var joined = ee.ImageCollection(ee.Join.saveFirst('cloudprob').apply({
+  primary: ee.ImageCollection('COPERNICUS/S2_HARMONIZED').filterBounds(exportUtm),
+  secondary: ee.ImageCollection('COPERNICUS/S2_CLOUD_PROBABILITY').filterBounds(exportUtm),
+  condition: ee.Filter.equals({leftField:'system:index', rightField:'system:index'})
+}));
+
+function bestByCloud(start, end){
+  return ee.Image(
+    joined.filterDate(start, end)
+      .map(function(img){
+        var cp = ee.Image(img.get('cloudprob')).select('probability');
+        var cloudFrac = ee.Number(cp.gt(40).reduceRegion({
+          reducer: ee.Reducer.mean(), geometry: exportUtm, scale: 20, bestEffort: true
+        }).get('probability'));
+        return img.set('cloudFrac', ee.Algorithms.If(cloudFrac, cloudFrac, 1));
+      })
+      .sort('cloudFrac')
+      .first()
+  );
+}
+
+function prep(img){
+  return img.select(s2Bands13).reproject({crs: outCRS, scale: outScale}).clip(exportUtm).toUint16();
+}
+
+var beforeImg = bestByCloud(targetDate.advance(-preLookbackDays, 'day'), targetDate);
+var onImg = bestByCloud(targetDate.advance(-nearestDays, 'day'), targetDate.advance(nearestDays + 1, 'day'));
+var afterImg = bestByCloud(targetDate.advance(1, 'day'), targetDate.advance(postForwardDays + 1, 'day'));
+
+[
+  {img: prep(beforeImg), desc: 'BEFORE_S2_13B', pref: 'BEFORE_S2_13B_10km2'},
+  {img: prep(onImg), desc: 'ON_S2_13B', pref: 'ON_S2_13B_10km2'},
+  {img: prep(afterImg), desc: 'AFTER_S2_13B', pref: 'AFTER_S2_13B_10km2'}
+].forEach(function(x) {
+  Export.image.toDrive({
+    image: x.img, description: x.desc, folder: outFolder,
+    fileNamePrefix: x.pref, region: exportUtm,
+    crs: outCRS, dimensions: exportDimensions,
+    maxPixels: 1e13, fileFormat: 'GeoTIFF',
+    formatOptions: {cloudOptimized: true}
+  });
+});</code></pre>
+              <p class="inline-note">
+                Tip: keep a consistent naming convention so each event has aligned
+                RGB + MSI triplets (same region and date logic).
+              </p>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>How We Collect MSI Triplets</h3>
+              <ol>
+                <li><strong>Choose event center + target date.</strong></li>
+                <li><strong>Define windows:</strong>
+                  <ul>
+                    <li><strong>Before:</strong> best image from lookback window.</li>
+                    <li><strong>On:</strong> exact or nearest clean image.</li>
+                    <li><strong>After:</strong> best image from forward window.</li>
+                  </ul>
+                </li>
+                <li>Join cloud probability, rank by patch quality, and select triplet.</li>
+                <li>Select 13 bands, align to fixed grid, and export GeoTIFF.</li>
+              </ol>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Sentinel-2 MSI Bands (13-band Set)</h3>
+              <p>
+                Each timestamp includes 13 bands. The main value over RGB is red-edge, NIR, and SWIR information.
+              </p>
+
+              <div class="table-wrap" role="region" aria-label="Sentinel-2 bands table">
+                <table class="band-table">
+                  <thead>
+                    <tr>
+                      <th>Band</th>
+                      <th>Common Name</th>
+                      <th>Main Use (typical)</th>
+                      <th>Resolution</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr><td>B1</td><td>Coastal aerosol</td><td>Coastal / haze, atmospheric effects</td><td>60 m</td></tr>
+                    <tr><td>B2</td><td>Blue</td><td>Water / atmosphere, true color</td><td>10 m</td></tr>
+                    <tr><td>B3</td><td>Green</td><td>Vegetation, true color</td><td>10 m</td></tr>
+                    <tr><td>B4</td><td>Red</td><td>Vegetation contrast, built-up edges</td><td>10 m</td></tr>
+                    <tr><td>B5</td><td>Red Edge 1</td><td>Vegetation condition (chlorophyll)</td><td>20 m</td></tr>
+                    <tr><td>B6</td><td>Red Edge 2</td><td>Vegetation structure / stress</td><td>20 m</td></tr>
+                    <tr><td>B7</td><td>Red Edge 3</td><td>Vegetation structure / stress</td><td>20 m</td></tr>
+                    <tr><td>B8</td><td>NIR</td><td>Vegetation vigor, NDVI, biomass</td><td>10 m</td></tr>
+                    <tr><td>B8A</td><td>Narrow NIR</td><td>Vegetation + atmospheric robustness</td><td>20 m</td></tr>
+                    <tr><td>B9</td><td>Water vapor</td><td>Atmospheric correction support</td><td>60 m</td></tr>
+                    <tr><td>B10</td><td>Cirrus</td><td>Thin cloud / cirrus detection</td><td>60 m</td></tr>
+                    <tr><td>B11</td><td>SWIR 1</td><td>Moisture, burn scars, soil/urban contrast</td><td>20 m</td></tr>
+                    <tr><td>B12</td><td>SWIR 2</td><td>Burn scars, dry vegetation, material differences</td><td>20 m</td></tr>
+                  </tbody>
+                </table>
+              </div>
+
+              
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Why MSI Helps Change Detection (vs RGB)</h3>
+              <ul>
+                <li>NIR/SWIR capture moisture and vegetation signals that RGB misses.</li>
+                <li>Built-up, soil, and vegetation separate better with red-edge + SWIR bands.</li>
+                <li>Indices (NDVI/NDWI/NBR) improve robustness across lighting changes.</li>
+              </ul>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Paper Study</h3>
+              <p>
+                I reviewed a Sentinel-2 urban change detection paper and extracted ideas for this dataset.
+              </p>
+
+              <div class="resource-links">
+                <!-- Put the PDF in: Papers/Detection_of_Urban_Built-Up_Area_Change_From_Senti.pdf -->
+                <a href="Papers/Detection_of_Urban_Built-Up_Area_Change_From_Senti.pdf" target="_blank" rel="noopener">
+                  Read the paper (PDF)
+                </a>
+              </div>
+
+              <h4 style="margin-top: 1rem;">Key takeaways</h4>
+              <ul>
+                <li>Combine spectral features with local temporal context.</li>
+                <li>Include vegetation-aware features to reduce false change alerts.</li>
+                <li>MSI triplets support stronger baselines than RGB-only inputs.</li>
+              </ul>
+
+              <p class="inline-note">
+                These points will guide band/index selection for the next baseline.
+              </p>
+            </section>
+          </div>
         </section>
       </div>
     </main>
