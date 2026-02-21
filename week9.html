@@ -11,6 +11,54 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .content-stack {
+        display: grid;
+        gap: 1.25rem;
+      }
+      .content-block {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .content-block:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .content-block h3 {
+        margin-bottom: 0.6rem;
+      }
+      .content-block ul,
+      .content-block ol {
+        margin-left: 1.2rem;
+      }
+      .content-block ul {
+        list-style: disc;
+      }
+      .content-block ol {
+        list-style: decimal;
+      }
+      .content-block li {
+        margin: 0.35rem 0;
+      }
+      .pdf-viewer {
+        margin-top: 0.85rem;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .pdf-viewer iframe {
+        width: 100%;
+        height: 620px;
+        border: 0;
+        display: block;
+      }
+      @media (max-width: 768px) {
+        .pdf-viewer iframe {
+          height: 440px;
+        }
+      }
+    </style>
   </head>
   <body>
     <nav class="navbar" aria-label="Primary">
@@ -50,36 +98,346 @@
           <p class="eyebrow">Weekly Progress</p>
           <h1>Week 9 - Project Progress</h1>
           <p class="lead">
-            Placeholder summary for Week 9. Replace this with the key focus of
-            the week.
+            Week 9 combined two tracks: cloud-removal preprocessing for Sentinel-2
+            optical scenes, and tri-temporal dataset expansion across new
+            flood-prone locations.
           </p>
         </header>
 
-        <section class="week-grid">
-          <article class="card reveal">
-            <h2>Objectives</h2>
-            <p>Placeholder text describing the goals for Week 9.</p>
-          </article>
+        <section class="section" aria-label="Week 9 highlights">
+          <div class="section-heading">
+            <p class="eyebrow">At a glance</p>
+            <h2>Cloud-resilient data pipeline</h2>
+            <p class="lead">This week balanced preprocessing improvements with new tri-temporal site collection.</p>
+          </div>
+          <div class="content-stack">
+            <section class="content-block reveal">
+              <h3>Focus</h3>
+              <ul>
+                <li>Set up a cloud-removal workflow for Sentinel-2 optical scenes.</li>
+                <li>Expand the BEFORE/ON/AFTER dataset with flood-relevant Sri Lankan locations.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Work Done</h2>
-            <p>Placeholder text summarizing completed tasks and activities.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Work Done</h3>
+              <ul>
+                <li>Reproduced the DSen2-CR environment for cloud-heavy tiles.</li>
+                <li>Generated sample outputs across three test sets (mask/input/prediction).</li>
+                <li>Added new triplets from Kelani, Mahaweli (Trincomalee), and Negombo.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Tools / Methods Used</h2>
-            <p>Placeholder text listing software, datasets, or methodologies.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Results / Observations</h3>
+              <ul>
+                <li>Cloud-removal outputs improve visual continuity for heavily occluded scenes.</li>
+                <li>Combined optical + SAR guidance is promising for preserving structure.</li>
+                <li>New locations increase event diversity for downstream training and validation.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Results / Observations</h2>
-            <p>Placeholder text highlighting findings or interim outputs.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Next Week Plan</h3>
+              <ul>
+                <li>Run more scenes through cloud removal and compare with manual labels.</li>
+                <li>Evaluate whether cloud-free predictions improve annotation consistency.</li>
+                <li>Finalize naming and packaging standards across all triplets.</li>
+              </ul>
+            </section>
+          </div>
+        </section>
 
-          <article class="card reveal">
-            <h2>Next Week Plan</h2>
-            <p>Placeholder text outlining the plan for the next week.</p>
-          </article>
+        <section class="section" id="cloud-removal" aria-label="Cloud removal setup">
+          <div class="section-heading">
+            <p class="eyebrow">Preprocessing</p>
+            <h2>DSen2-CR setup</h2>
+            <p class="lead">Environment setup and reference paper used for cloud-removal experiments.</p>
+          </div>
+          <div class="content-stack">
+            <section class="content-block reveal">
+              <h3>Why this pipeline</h3>
+              <p>
+                Optical scenes are often blocked by dense cloud cover. DSen2-CR offers a practical way to reconstruct
+                cloud-obscured regions so tri-temporal interpretation becomes more stable.
+              </p>
+
+              <div class="repo-card">
+                <div>
+                  <h3>DSen2-CR · ameraner/dsen2-cr</h3>
+                  <p>
+                    Residual network approach for Sentinel-2 cloud removal with SAR guidance and cloud-adaptive loss.
+                  </p>
+                </div>
+                <a
+                  class="ghost-button repo-card-link"
+                  href="https://github.com/ameraner/dsen2-cr"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                    <path
+                      fill="currentColor"
+                      d="M12 .297a12 12 0 00-3.793 23.4c.6.111.82-.26.82-.578 0-.285-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.755-1.333-1.755-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.809 1.304 3.495.997.108-.776.418-1.304.76-1.604-2.665-.304-5.466-1.332-5.466-5.93 0-1.31.467-2.38 1.235-3.22-.123-.303-.535-1.528.117-3.18 0 0 1.007-.323 3.3 1.23a11.5 11.5 0 016 0c2.29-1.553 3.296-1.23 3.296-1.23.654 1.653.243 2.878.12 3.18.77.84 1.232 1.91 1.232 3.22 0 4.61-2.804 5.624-5.475 5.92.43.372.814 1.103.814 2.222 0 1.605-.015 2.896-.015 3.293 0 .32.216.694.825.576A12 12 0 0012 .297"
+                    />
+                  </svg>
+                  Visit Repository
+                </a>
+              </div>
+
+              <ul class="detail-list" style="margin-top: 1.5rem">
+                <li>Cloud occlusion hides true land-surface change in optical time series.</li>
+                <li>Residual reconstruction provides a usable cloud-free approximation.</li>
+                <li>SAR guidance can preserve scene structure during reconstruction.</li>
+              </ul>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Reference paper</h3>
+              <div class="pdf-viewer">
+                <iframe src="Papers/cloud.pdf#view=FitH" title="DSen2-CR paper"></iframe>
+              </div>
+            </section>
+          </div>
+        </section>
+
+        <section class="section" id="cloud-results" aria-label="Cloud removal outputs">
+          <div class="section-heading">
+            <p class="eyebrow">Outputs</p>
+            <h2>Cloud-removal results</h2>
+            <p class="lead">Each set shows mask, raw input, enhanced input, and predicted cloud-free image.</p>
+          </div>
+          <div class="triplet-table-wrapper reveal">
+            <table class="triplet-table">
+              <thead>
+                <tr>
+                  <th>Cloud Mask</th>
+                  <th>Raw Input</th>
+                  <th>Brightness-Stretched Input</th>
+                  <th>Predicted Cloud-Free</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="triplet-label-row">
+                  <th colspan="4">Set 1</th>
+                </tr>
+                <tr>
+                  <td>
+                    <figure>
+                      <img
+                        src="assets/cloudmask1.png"
+                        alt="Cloud mask for set 1"
+                      />
+                      <figcaption>cloudmask1.png</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img
+                        src="assets/input1.png"
+                        alt="Raw Sentinel-2 tile for set 1"
+                      />
+                      <figcaption>input1.png</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img
+                        src="assets/inputbr1.png"
+                        alt="Brightness-enhanced input for set 1"
+                      />
+                      <figcaption>inputbr1.png</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img
+                        src="assets/inputpred1.png"
+                        alt="Predicted cloud-free output for set 1"
+                      />
+                      <figcaption>inputpred1.png</figcaption>
+                    </figure>
+                  </td>
+                </tr>
+
+                <tr class="triplet-label-row">
+                  <th colspan="4">Set 2</th>
+                </tr>
+                <tr>
+                  <td>
+                    <figure>
+                      <img
+                        src="assets/cloudmask2.png"
+                        alt="Cloud mask for set 2"
+                      />
+                      <figcaption>cloudmask2.png</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img
+                        src="assets/input2.png"
+                        alt="Raw Sentinel-2 tile for set 2"
+                      />
+                      <figcaption>input2.png</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img
+                        src="assets/inputbr2.png"
+                        alt="Brightness-enhanced input for set 2"
+                      />
+                      <figcaption>inputbr2.png</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img
+                        src="assets/inputpred2.png"
+                        alt="Predicted cloud-free output for set 2"
+                      />
+                      <figcaption>inputpred2.png</figcaption>
+                    </figure>
+                  </td>
+                </tr>
+
+                <tr class="triplet-label-row">
+                  <th colspan="4">Set 3</th>
+                </tr>
+                <tr>
+                  <td>
+                    <figure>
+                      <img
+                        src="assets/cloudmask3.png"
+                        alt="Cloud mask for set 3"
+                      />
+                      <figcaption>cloudmask3.png</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img
+                        src="assets/input2.png"
+                        alt="Raw Sentinel-2 tile for set 3"
+                      />
+                      <figcaption>input3.png</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img
+                        src="assets/inputbr3.png"
+                        alt="Brightness-enhanced input for set 3"
+                      />
+                      <figcaption>inputbr3.png</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img
+                        src="assets/inputpred3.png"
+                        alt="Predicted cloud-free output for set 3"
+                      />
+                      <figcaption>inputpred3.png</figcaption>
+                    </figure>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="section" id="triplet-grid" aria-label="New tri-temporal samples">
+          <div class="section-heading">
+            <p class="eyebrow">Dataset expansion</p>
+            <h2>Week 9 sample triplets</h2>
+            <p class="lead">New BEFORE / ON / AFTER samples from flood-prone and coastal zones.</p>
+          </div>
+          <div class="triplet-table-wrapper reveal">
+            <table class="triplet-table">
+              <thead>
+                <tr>
+                  <th>Before</th>
+                  <th>On</th>
+                  <th>After</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="triplet-label-row">
+                  <th colspan="3">Kelani River Flood-Prone Area</th>
+                </tr>
+                <tr>
+                  <td>
+                    <figure>
+                      <img src="assets/BEFORE_kalaniya.png" alt="Kelani before" />
+                      <figcaption>Before</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img src="assets/ON_kalaniya.png" alt="Kelani on" />
+                      <figcaption>On</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img src="assets/AFTER_kalaniya.png" alt="Kelani after" />
+                      <figcaption>After</figcaption>
+                    </figure>
+                  </td>
+                </tr>
+
+                <tr class="triplet-label-row">
+                  <th colspan="3">Mahaweli River near Trincomalee</th>
+                </tr>
+                <tr>
+                  <td>
+                    <figure>
+                      <img src="assets/BEFORE_trinco.png" alt="Mahaweli before" />
+                      <figcaption>Before</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img src="assets/ON_trinco.png" alt="Mahaweli on" />
+                      <figcaption>On</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img src="assets/AFTER_trinco.png" alt="Mahaweli after" />
+                      <figcaption>After</figcaption>
+                    </figure>
+                  </td>
+                </tr>
+
+                <tr class="triplet-label-row">
+                  <th colspan="3">Negombo Lagoon</th>
+                </tr>
+                <tr>
+                  <td>
+                    <figure>
+                      <img src="assets/BEFORE_negombo.png" alt="Negombo before" />
+                      <figcaption>Before</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img src="assets/ON_negombo.png" alt="Negombo on" />
+                      <figcaption>On</figcaption>
+                    </figure>
+                  </td>
+                  <td>
+                    <figure>
+                      <img src="assets/AFTER_negombo.png" alt="Negombo after" />
+                      <figcaption>After</figcaption>
+                    </figure>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </section>
       </div>
     </main>
