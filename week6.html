@@ -90,6 +90,19 @@
         margin-right: 0.75rem;
         margin-top: 0.35rem;
       }
+      .pdf-viewer {
+        margin-top: 0.85rem;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .pdf-viewer iframe {
+        width: 100%;
+        height: 680px;
+        border: 0;
+        display: block;
+      }
       .content-stack {
         display: grid;
         gap: 1.25rem;
@@ -121,6 +134,11 @@
       }
       .content-block li {
         margin: 0.35rem 0;
+      }
+      @media (max-width: 768px) {
+        .pdf-viewer iframe {
+          height: 460px;
+        }
       }
     </style>
   </head>
@@ -313,10 +331,7 @@ var afterImg = bestByCloud(targetDate.advance(1, 'day'), targetDate.advance(post
     formatOptions: {cloudOptimized: true}
   });
 });</code></pre>
-              <p class="inline-note">
-                Tip: keep a consistent naming convention so each event has aligned
-                RGB + MSI triplets (same region and date logic).
-              </p>
+              
             </section>
 
             <section class="content-block reveal">
@@ -392,6 +407,13 @@ var afterImg = bestByCloud(targetDate.advance(1, 'day'), targetDate.advance(post
                 <a href="Papers/Detection_of_Urban_Built-Up_Area_Change_From_Senti.pdf" target="_blank" rel="noopener">
                   Read the paper (PDF)
                 </a>
+              </div>
+              <div class="pdf-viewer">
+                <iframe
+                  src="Papers/Detection_of_Urban_Built-Up_Area_Change_From_Senti.pdf#view=FitH"
+                  title="Detection of Urban Built-Up Area Change paper"
+                >
+                </iframe>
               </div>
 
               <h4 style="margin-top: 1rem;">Key takeaways</h4>

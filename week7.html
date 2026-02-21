@@ -11,7 +11,128 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Small page-only helpers (keeps your global CSS untouched) -->
+    <style>
+      .codeblock {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        padding: 0.9rem 1rem;
+        overflow-x: auto;
+      }
+      .codeblock code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 0.92rem;
+        line-height: 1.5;
+        white-space: pre;
+      }
+      .pill-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-top: 0.75rem;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        padding: 0.35rem 0.6rem;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        font-size: 0.85rem;
+      }
+      figure.media {
+        margin: 0;
+      }
+      figure.media img {
+        width: 100%;
+        height: auto;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        display: block;
+      }
+      figure.media figcaption {
+        margin-top: 0.6rem;
+        opacity: 0.9;
+        font-size: 0.92rem;
+      }
+      .resource-list {
+        display: grid;
+        gap: 0.7rem;
+        margin: 0.75rem 0 0;
+        padding: 0;
+        list-style: none;
+      }
+      .resource {
+        display: grid;
+        gap: 0.2rem;
+        padding: 0.75rem 0.9rem;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(255, 255, 255, 0.04);
+      }
+      .resource a {
+        font-weight: 600;
+      }
+      .pdf-viewer {
+        margin-top: 0.75rem;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .pdf-viewer iframe {
+        width: 100%;
+        height: 640px;
+        border: 0;
+        display: block;
+      }
+      .content-stack {
+        display: grid;
+        gap: 1.25rem;
+      }
+      .content-block {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .content-block:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .content-block h3 {
+        margin-bottom: 0.6rem;
+      }
+      .content-block ul,
+      .content-block ol {
+        margin-left: 1.2rem;
+      }
+      .content-block ul {
+        list-style: disc;
+      }
+      .content-block ol {
+        list-style: decimal;
+      }
+      .content-block li {
+        margin: 0.35rem 0;
+      }
+      .muted {
+        opacity: 0.9;
+      }
+      .mini-note {
+        font-size: 0.95rem;
+        opacity: 0.95;
+      }
+      @media (max-width: 768px) {
+        .pdf-viewer iframe {
+          height: 420px;
+        }
+      }
+    </style>
   </head>
+
   <body>
     <nav class="navbar" aria-label="Primary">
       <div class="nav-container">
@@ -21,6 +142,7 @@
         </button>
         <ul class="nav-menu">
           <li><a class="nav-link" href="index.html">Home</a></li>
+
           <li class="dropdown">
             <button class="dropdown-toggle" type="button">Weekly Progress</button>
             <ul class="dropdown-menu">
@@ -30,7 +152,9 @@
               <li><a class="nav-link" href="week4.html">Week 4</a></li>
               <li><a class="nav-link" href="week5.html">Week 5</a></li>
               <li><a class="nav-link" href="week6.html">Week 6</a></li>
-              <li><a class="nav-link" href="week7.html">Week 7</a></li>
+              <li>
+                <a class="nav-link" href="week7.html" aria-current="page">Week 7</a>
+              </li>
               <li><a class="nav-link" href="week8.html">Week 8</a></li>
               <li><a class="nav-link" href="week9.html">Week 9</a></li>
               <li><a class="nav-link" href="week10.html">Week 10</a></li>
@@ -39,6 +163,7 @@
               <li><a class="nav-link" href="week13.html">Week 13</a></li>
             </ul>
           </li>
+
           <li><a class="nav-link" href="index.html#contact">Contact</a></li>
         </ul>
       </div>
@@ -48,38 +173,168 @@
       <div class="container">
         <header class="page-hero reveal">
           <p class="eyebrow">Weekly Progress</p>
-          <h1>Week 7 - Project Progress</h1>
+          <h1>Week 7 - MSI Index-Based Change Detection & Annotation Upgrade</h1>
           <p class="lead">
-            Placeholder summary for Week 7. Replace this with the key focus of
-            the week.
+            This week focused on MSI index-based change detection and improving annotations
+            to include both Before->On and Before->After masks.
           </p>
+
+          <div class="pill-row" aria-label="Week 7 highlights">
+            <span class="pill">MSI indices: NDVI / NDWI</span>
+            <span class="pill">Δ-index change maps</span>
+            <span class="pill">Before->On & Before->After annotation</span>
+            <span class="pill">Paper reading + notes</span>
+          </div>
         </header>
 
-        <section class="week-grid">
-          <article class="card reveal">
-            <h2>Objectives</h2>
-            <p>Placeholder text describing the goals for Week 7.</p>
-          </article>
+        <section class="section" aria-label="Week 7 highlights">
+          <div class="section-heading">
+            <p class="eyebrow">At a glance</p>
+            <h2>Index-based progress</h2>
+            <p class="lead">Main goals, progress, and next actions from Week 7.</p>
+          </div>
+          <div class="content-stack">
+            <section class="content-block reveal">
+              <h3>Objectives</h3>
+              <ul>
+                <li>Understand delta-index change detection using NDVI and NDWI.</li>
+                <li>Study index behavior from selected literature.</li>
+                <li>Extend annotation to both Before->On and Before->After.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Work Done</h2>
-            <p>Placeholder text summarizing completed tasks and activities.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Work Done</h3>
+              <ul>
+                <li>Reviewed MSI index-based change workflows.</li>
+                <li>Read and summarized papers in the <code>Papers/</code> folder.</li>
+                <li>Updated labeling protocol for two mask pairs.</li>
+                <li>Prepared a sample tri-temporal annotation view.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Tools / Methods Used</h2>
-            <p>Placeholder text listing software, datasets, or methodologies.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Tools / Methods Used</h3>
+              <ul>
+                <li>Sentinel-2 Red/NIR/SWIR bands for NDVI and NDWI.</li>
+                <li>Delta-index maps for fast change cues.</li>
+                <li>Web annotation tool with side-by-side QA checks.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Results / Observations</h2>
-            <p>Placeholder text highlighting findings or interim outputs.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Results / Observations</h3>
+              <ul>
+                <li>NDVI highlights greenness shifts, NDWI highlights moisture shifts.</li>
+                <li>Dual masks capture both immediate and persistent change.</li>
+                <li>Delta-index maps are useful as baseline signals.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Next Week Plan</h2>
-            <p>Placeholder text outlining the plan for the next week.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Next Week Plan</h3>
+              <ul>
+                <li>Compute NDVI/NDWI across more events.</li>
+                <li>Set consistent normalization and threshold rules.</li>
+                <li>Run a small baseline using index features.</li>
+              </ul>
+            </section>
+          </div>
+        </section>
+
+        <section class="section" aria-label="Week 7 details">
+          <div class="section-heading">
+            <p class="eyebrow">Details</p>
+            <h2>Concept, annotation, and papers</h2>
+            <p class="lead">Compact notes and references used this week.</p>
+          </div>
+          <div class="content-stack">
+            <section class="content-block reveal">
+              <h3>MSI Index-Based Change Detection</h3>
+              <p class="muted">
+                Compute indices per timestamp (Before/On/After), then analyze delta values to detect change.
+              </p>
+              <div class="codeblock" aria-label="Index formulas">
+                <code>
+NDVI = (NIR - Red) / (NIR + Red)
+NDWI ~= (NIR - SWIR) / (NIR + SWIR)
+
+Delta(before->on) = Index_on - Index_before
+Delta(before->after) = Index_after - Index_before
+                </code>
+              </div>
+              <ul style="margin-top: 0.9rem">
+                <li>Red tracks chlorophyll absorption.</li>
+                <li>NIR rises with healthy vegetation reflectance.</li>
+                <li>SWIR responds to moisture and water-content changes.</li>
+              </ul>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Annotation Upgrade: Before->On and Before->After</h3>
+              <p class="muted">
+                We now annotate both pairs to capture immediate and persistent change more reliably.
+              </p>
+              <figure class="media">
+                <img
+                  src="assets/ample_annotation.png"
+                  alt="Sample annotation showing before on after images and before-on vs before-after change masks"
+                  loading="lazy"
+                />
+                <figcaption>
+                  Tri-temporal imagery (Before / On / After) with Before->On and Before->After masks.
+                </figcaption>
+              </figure>
+              <ul style="margin-top: 0.9rem">
+                <li>Before->On: immediate event-period change.</li>
+                <li>Before->After: persistent post-event change.</li>
+                <li>Together: stronger supervision from one triplet.</li>
+              </ul>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Papers Read (View in Website)</h3>
+              <p class="muted">References used for index understanding and interpretation:</p>
+              <ul class="resource-list">
+                <li class="resource">
+                  <a href="Papers/NDWI.pdf" target="_blank" rel="noopener">NDWI.pdf</a>
+                  <span class="muted">Water/moisture-sensitive index behavior and interpretation.</span>
+                </li>
+                <li class="resource">
+                  <a
+                    href="Papers/Spatial%20Patterns%20of%20NDVI%20Vegetation%20Greennesspdf.pdf"
+                    target="_blank"
+                    rel="noopener"
+                  >
+                    Spatial Patterns of NDVI Vegetation Greennesspdf.pdf
+                  </a>
+                  <span class="muted">Spatial behavior of NDVI/NDWI from Sentinel-2 imagery.</span>
+                </li>
+              </ul>
+
+              <h4 style="margin-top: 1rem">NDWI.pdf (inline)</h4>
+              <div class="pdf-viewer">
+                <iframe src="Papers/NDWI.pdf#view=FitH" title="NDWI paper"></iframe>
+              </div>
+
+              <h4 style="margin-top: 1rem">Spatial NDVI paper (inline)</h4>
+              <div class="pdf-viewer">
+                <iframe
+                  src="Papers/Spatial%20Patterns%20of%20NDVI%20Vegetation%20Greennesspdf.pdf#view=FitH"
+                  title="Spatial patterns of NDVI paper"
+                ></iframe>
+              </div>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>What I Learned</h3>
+              <ul>
+                <li>NDWI complements NDVI by exposing moisture-related vegetation change.</li>
+                <li>Combining indices helps separate different change types.</li>
+                <li>Band choice and alignment are important for reliable comparisons.</li>
+              </ul>
+            </section>
+          </div>
         </section>
       </div>
     </main>
