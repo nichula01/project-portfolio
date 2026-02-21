@@ -11,7 +11,56 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .content-stack {
+        display: grid;
+        gap: 1.25rem;
+      }
+      .content-block {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .content-block:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .content-block h3 {
+        margin-bottom: 0.6rem;
+      }
+      .content-block ul,
+      .content-block ol {
+        margin-left: 1.2rem;
+      }
+      .content-block ul {
+        list-style: disc;
+      }
+      .content-block ol {
+        list-style: decimal;
+      }
+      .content-block li {
+        margin: 0.35rem 0;
+      }
+      .pdf-viewer {
+        margin-top: 0.85rem;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .pdf-viewer iframe {
+        width: 100%;
+        height: 620px;
+        border: 0;
+        display: block;
+      }
+      @media (max-width: 768px) {
+        .pdf-viewer iframe {
+          height: 440px;
+        }
+      }
+    </style>
   </head>
+
   <body>
     <nav class="navbar" aria-label="Primary">
       <div class="nav-container">
@@ -50,37 +99,168 @@
           <p class="eyebrow">Weekly Progress</p>
           <h1>Week 10 - Project Progress</h1>
           <p class="lead">
-            Placeholder summary for Week 10. Replace this with the key focus of
-            the week.
+            This week focused on dataset auditing, Sri Lanka coverage review, and
+            event-specific GEE export templates for tsunami and wildfire scenarios.
           </p>
         </header>
 
-        <section class="week-grid">
-          <article class="card reveal">
-            <h2>Objectives</h2>
-            <p>Placeholder text describing the goals for Week 10.</p>
-          </article>
+        <section class="section" id="week10-summary" aria-label="Week 10 highlights">
+          <div class="section-heading">
+            <p class="eyebrow">At a glance</p>
+            <h2>Audit and template preparation</h2>
+            <p class="lead">Core progress from dataset review, coverage mapping, and exporter design.</p>
+          </div>
+          <div class="content-stack">
+            <section class="content-block reveal">
+              <h3>What I completed</h3>
+              <ul>
+                <li>Audited the current dataset and checked spatial spread.</li>
+                <li>Mapped Sri Lanka tile centers to identify dense and sparse zones.</li>
+                <li>Prepared dedicated GEE export templates for tsunami and wildfire events.</li>
+                <li>Reviewed Scientific Data papers to improve release documentation quality.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Work Done</h2>
-            <p>Placeholder text summarizing completed tasks and activities.</p>
-          </article>
-
-          <article class="card reveal">
-            <h2>Tools / Methods Used</h2>
-            <p>Placeholder text listing software, datasets, or methodologies.</p>
-          </article>
-
-          <article class="card reveal">
-            <h2>Results / Observations</h2>
-            <p>Placeholder text highlighting findings or interim outputs.</p>
-          </article>
-
-          <article class="card reveal">
-            <h2>Next Week Plan</h2>
-            <p>Placeholder text outlining the plan for the next week.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Current coverage</h3>
+              <p>Current snapshot includes <strong>272 images</strong> collected across Sri Lanka.</p>
+              <figure class="media-frame reveal" style="margin-top: 1rem;">
+                <img
+                  src="assets/srilanka.png"
+                  alt="Sri Lanka tile center distribution"
+                  style="width: 100%; height: auto;"
+                />
+                <figcaption>
+                  Tile-center distribution for the current dataset snapshot.
+                </figcaption>
+              </figure>
+            </section>
+          </div>
         </section>
+
+        <section class="section" id="gee-templates" aria-label="Event-specific export templates">
+          <div class="section-heading">
+            <p class="eyebrow">Template design</p>
+            <h2>GEE exporters by hazard type</h2>
+            <p class="lead">Windows and selection logic were separated to fit tsunami and wildfire dynamics.</p>
+          </div>
+          <div class="content-stack">
+            <section class="content-block reveal">
+              <h3>Event windows</h3>
+              <div class="triplet-table-wrapper reveal" style="margin-top: 0.8rem;">
+                <table class="triplet-table">
+                  <thead>
+                    <tr>
+                      <th>Event Type</th>
+                      <th>BEFORE Window</th>
+                      <th>ON Window</th>
+                      <th>AFTER Window</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>Tsunami</strong></td>
+                      <td>-120 to -30 days</td>
+                      <td>0 to +10 days (fallback: +30, +60)</td>
+                      <td>+30 to +120 days</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Wildfire</strong></td>
+                      <td>-90 to -14 days</td>
+                      <td>0 to +5 days (fallback: +14, +30)</td>
+                      <td>+30 to +120 days</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Tsunami template (reduced)</h3>
+              <pre style="margin-top: 0.8rem; overflow:auto;"><code>// TSUNAMI template (reduced)
+var targetDate = ee.Date('2018-09-28');
+var beforeWindow = [-120, -30];
+var onWindows = [10, 30, 60];
+var afterWindow = [30, 120];
+
+// Join S2 SR with cloud probability, pick BEFORE/ON/AFTER, export RGB8 + MSI13.
+// Full fallback and index-matching logic remains in the full script version.</code></pre>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Wildfire template (reduced)</h3>
+              <pre style="margin-top: 0.8rem; overflow:auto;"><code>// WILDFIRE template (reduced)
+var targetDate = ee.Date('2023-08-08');
+var beforeWindow = [-90, -14];
+var onWindows = [5, 14, 30];
+var afterWindow = [30, 120];
+
+// ON selection adds a simple haze proxy (low B2 mean preferred).
+// Export format matches tsunami pipeline for consistent packaging.</code></pre>
+            </section>
+          </div>
+        </section>
+
+        <section class="section" id="paper-learning" aria-label="Scientific Data paper notes">
+          <div class="section-heading">
+            <p class="eyebrow">Paper study</p>
+            <h2>Scientific Data lessons applied</h2>
+            <p class="lead">Reading notes translated into concrete dataset release improvements.</p>
+          </div>
+          <div class="content-stack">
+            <section class="content-block reveal">
+              <h3>Key takeaways</h3>
+              <ul>
+                <li>Present a clear dataset motivation and intended benchmark use.</li>
+                <li>Document the pipeline end-to-end with transparent metadata fields.</li>
+                <li>Define reproducible splits and evaluation metrics from the start.</li>
+                <li>State known limitations and sampling bias explicitly.</li>
+              </ul>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Paper mapping</h3>
+              <div class="triplet-table-wrapper reveal" style="margin-top: 0.8rem;">
+                <table class="triplet-table">
+                  <thead>
+                    <tr>
+                      <th>Paper</th>
+                      <th>Why it was useful</th>
+                      <th>Practice adopted</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>paper1.pdf</strong></td>
+                      <td>Large-scale spatio-temporal dataset presentation style.</td>
+                      <td>Workflow figure + metadata + baseline section.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>paper2.pdf</strong></td>
+                      <td>Hazard-focused annotation and evaluation structure.</td>
+                      <td>Clear split protocol and benchmark reporting format.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Paper 1 (inline)</h3>
+              <div class="pdf-viewer">
+                <iframe src="Papers/paper1.pdf#view=FitH" title="Paper 1"></iframe>
+              </div>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Paper 2 (inline)</h3>
+              <div class="pdf-viewer">
+                <iframe src="Papers/paper2.pdf#view=FitH" title="Paper 2"></iframe>
+              </div>
+            </section>
+          </div>
+        </section>
+
       </div>
     </main>
 
