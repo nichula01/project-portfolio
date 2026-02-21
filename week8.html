@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Week 8 - Project Progress</title>
+    <title>Week 8 - MSI Change Detection (Tri-temporal)</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,7 +11,150 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+
+    <!-- Page-only helpers (safe even if your global CSS changes) -->
+    <style>
+      .meta-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+        font-size: 0.95rem;
+      }
+      .pill strong {
+        font-weight: 600;
+      }
+      .code-block {
+        margin-top: 14px;
+        border-radius: 14px;
+        padding: 14px 14px;
+        background: rgba(0, 0, 0, 0.35);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        overflow-x: auto;
+      }
+      .code-block code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 0.92rem;
+        line-height: 1.45;
+        white-space: pre;
+      }
+      .note {
+        margin-top: 12px;
+        padding: 12px 14px;
+        border-radius: 14px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+      }
+      .note h3 {
+        margin: 0 0 6px 0;
+        font-size: 1.05rem;
+      }
+      .media-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
+        margin-top: 10px;
+      }
+      .media-card {
+        grid-column: span 12;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .media-card img {
+        display: block;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: contain;
+        background: rgba(0, 0, 0, 0.25);
+      }
+      .media-card figcaption {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        opacity: 0.92;
+      }
+      @media (min-width: 860px) {
+        .media-card.half {
+          grid-column: span 6;
+        }
+      }
+      .list-tight {
+        margin: 10px 0 0 18px;
+      }
+      .list-tight li {
+        margin: 6px 0;
+      }
+      .link-row a {
+        display: inline-block;
+        margin-right: 10px;
+      }
+      .resource-links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        margin-right: 0.75rem;
+        margin-top: 0.35rem;
+      }
+      .pdf-viewer {
+        margin-top: 0.85rem;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .pdf-viewer iframe {
+        width: 100%;
+        height: 680px;
+        border: 0;
+        display: block;
+      }
+      .content-stack {
+        display: grid;
+        gap: 1.25rem;
+      }
+      .content-block {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .content-block:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+      .content-block h3 {
+        margin-bottom: 0.6rem;
+      }
+      .content-block ul,
+      .content-block ol {
+        margin-left: 1.2rem;
+      }
+      .content-block ul {
+        list-style: disc;
+      }
+      .content-block ol {
+        list-style: decimal;
+      }
+      .content-block li {
+        margin: 0.35rem 0;
+      }
+      @media (max-width: 768px) {
+        .pdf-viewer iframe {
+          height: 460px;
+        }
+      }
+    </style>
   </head>
+
   <body>
     <nav class="navbar" aria-label="Primary">
       <div class="nav-container">
@@ -48,38 +191,187 @@
       <div class="container">
         <header class="page-hero reveal">
           <p class="eyebrow">Weekly Progress</p>
-          <h1>Week 8 - Project Progress</h1>
+          <h1>Week 8 - MSI Change Detection (Tri-temporal)</h1>
           <p class="lead">
-            Placeholder summary for Week 8. Replace this with the key focus of
-            the week.
+            This week I built a compact Colab workflow to validate Sentinel-2 MSI
+            triplets and generate tri-temporal change masks using spectral indices.
           </p>
+
+          <div class="meta-row">
+            <span class="pill"><strong>Data:</strong> Sentinel-2 MSI triplets (BEFORE / ON / AFTER)</span>
+            <span class="pill"><strong>Core idea:</strong> Index differencing + persistent vs transient change</span>
+            <span class="pill"><strong>Outputs:</strong> NDVI/NDWI rasters + change masks (GeoTIFF + PNG)</span>
+          </div>
         </header>
 
-        <section class="week-grid">
-          <article class="card reveal">
-            <h2>Objectives</h2>
-            <p>Placeholder text describing the goals for Week 8.</p>
-          </article>
+        <section class="section" aria-label="Week 8 highlights">
+          <div class="section-heading">
+            <p class="eyebrow">At a glance</p>
+            <h2>Tri-temporal MSI workflow</h2>
+            <p class="lead">Main progress, methods, and outputs from Week 8.</p>
+          </div>
+          <div class="content-stack">
+            <section class="content-block reveal">
+              <h3>Objectives</h3>
+              <ul>
+                <li>Build a repeatable notebook for MSI triplet validation.</li>
+                <li>Generate tri-temporal change masks with NDVI/NDWI deltas.</li>
+                <li>Export clean outputs for dataset and model testing.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Work Done</h2>
-            <p>Placeholder text summarizing completed tasks and activities.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Work Done</h3>
+              <ul>
+                <li>Validated triplet completeness and Sentinel-2 band mapping.</li>
+                <li>Created RGB/false-color views and band inspection grids.</li>
+                <li>Computed NDVI/NDWI and delta maps against BEFORE.</li>
+                <li>Applied Otsu thresholding and morphological cleanup.</li>
+                <li>Exported GeoTIFF and PNG outputs per triplet.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Tools / Methods Used</h2>
-            <p>Placeholder text listing software, datasets, or methodologies.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Tools / Methods Used</h3>
+              <ul>
+                <li>Google Colab for notebook workflow.</li>
+                <li>MSI GeoTIFF read/write and quick visualization.</li>
+                <li>NDVI, NDWI, and delta-index comparison.</li>
+                <li>Otsu thresholding + morphology for mask cleanup.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Results / Observations</h2>
-            <p>Placeholder text highlighting findings or interim outputs.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Key Technical Details</h3>
+              <div class="note">
+                <h3>Index definitions</h3>
+                <ul class="list-tight">
+                  <li><strong>NDVI</strong> = (NIR - Red) / (NIR + Red)</li>
+                  <li><strong>NDWI</strong> = (Green - NIR) / (Green + NIR)</li>
+                </ul>
+              </div>
 
-          <article class="card reveal">
-            <h2>Next Week Plan</h2>
-            <p>Placeholder text outlining the plan for the next week.</p>
-          </article>
+              <pre class="code-block"><code>// Reduced tri-temporal mask logic
+d_on = idx_on - idx_before
+d_after = idx_after - idx_before
+
+mask_on = Otsu(abs(d_on))
+mask_after = Otsu(abs(d_after))
+
+mask_on = clean(mask_on)
+mask_after = clean(mask_after)
+
+persistent = mask_on AND mask_after
+transient = mask_on AND (NOT mask_after)</code></pre>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Results / Observations</h3>
+              <ul>
+                <li>False-color composites made vegetation/moisture shifts clearer than RGB.</li>
+                <li>Otsu gave a strong adaptive baseline for different scenes.</li>
+                <li>Persistent vs transient split helps interpret event dynamics.</li>
+              </ul>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Figures / Outputs</h3>
+              <p>Add these files to <code>assets/</code> to display generated visuals:</p>
+
+              <div class="media-grid">
+                <figure class="media-card half">
+                  <img
+                    src="assets/week8_triplet_rgb_falsecolor.png"
+                    alt="Week 8 RGB and false-color composites for before on after"
+                    loading="lazy"
+                  />
+                  <figcaption><strong>RGB vs false color:</strong> quick tri-temporal sanity check.</figcaption>
+                </figure>
+
+                <figure class="media-card half">
+                  <img
+                    src="assets/week8_band_inspection_grid.png"
+                    alt="Week 8 band inspection grid"
+                    loading="lazy"
+                  />
+                  <figcaption><strong>Band inspection:</strong> selected bands across time.</figcaption>
+                </figure>
+
+                <figure class="media-card half">
+                  <img
+                    src="assets/week8_ndvi_ndwi_maps.png"
+                    alt="Week 8 NDVI and NDWI maps for before on after"
+                    loading="lazy"
+                  />
+                  <figcaption><strong>Index maps:</strong> NDVI/NDWI across BEFORE, ON, AFTER.</figcaption>
+                </figure>
+
+                <figure class="media-card half">
+                  <img
+                    src="assets/week8_ndvi_change_masks.png"
+                    alt="Week 8 NDVI change masks"
+                    loading="lazy"
+                  />
+                  <figcaption><strong>NDVI masks:</strong> delta maps and temporal split outputs.</figcaption>
+                </figure>
+
+                <figure class="media-card half">
+                  <img
+                    src="assets/week8_ndwi_change_masks.png"
+                    alt="Week 8 NDWI change masks"
+                    loading="lazy"
+                  />
+                  <figcaption><strong>NDWI masks:</strong> moisture-sensitive change outputs.</figcaption>
+                </figure>
+
+                <figure class="media-card half">
+                  <img
+                    src="assets/week8_cva_magnitude.png"
+                    alt="Week 8 CVA magnitude output and mask"
+                    loading="lazy"
+                  />
+                  <figcaption><strong>CVA magnitude:</strong> additional multi-spectral change signal.</figcaption>
+                </figure>
+
+                <figure class="media-card half">
+                  <img
+                    src="assets/week8_export_outputs_preview.png"
+                    alt="Week 8 export outputs preview geotiff and png"
+                    loading="lazy"
+                  />
+                  <figcaption><strong>Exports:</strong> GeoTIFF + PNG outputs for packaging.</figcaption>
+                </figure>
+              </div>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Resources</h3>
+              <p>Notebook export PDF can be viewed directly on this page:</p>
+              <div class="resource-links">
+                <a href="Papers/week8_msi_change_detection_notebook.pdf" target="_blank" rel="noopener">
+                  Week 8 Colab Notebook (PDF)
+                </a>
+              </div>
+              <div class="pdf-viewer">
+                <iframe
+                  src="Papers/colab.pdf"
+                  title="Week 8 Colab Notebook PDF"
+                ></iframe>
+              </div>
+              <p class="note" style="margin-top: 12px;">
+                <strong>Tip:</strong> Place <code>week8_msi_change_detection_notebook.pdf</code> inside <code>Papers/</code>.
+              </p>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Next Week Plan</h3>
+              <ul>
+                <li>Run the notebook on more triplets for robustness checks.</li>
+                <li>Compare NDVI/NDWI masks with manual annotations.</li>
+                <li>Finalize which derived features to feed into baseline models.</li>
+              </ul>
+            </section>
+          </div>
         </section>
       </div>
     </main>
