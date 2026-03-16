@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Week 12 - Project Progress</title>
+    <title>Week 12 - Tri-temporal MSI Validation and Change Mapping</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -11,7 +11,134 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .summary-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 0.9rem;
+        margin-top: 1rem;
+      }
+
+      .summary-card {
+        grid-column: span 12;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        padding: 0.95rem 1rem;
+        background: rgba(255, 255, 255, 0.04);
+      }
+
+      .summary-card h3 {
+        margin-bottom: 0.35rem;
+        font-size: 1rem;
+      }
+
+      .summary-card p {
+        margin: 0;
+        font-size: 0.95rem;
+      }
+
+      .flow-list {
+        margin: 0.75rem 0 0 1.1rem;
+      }
+
+      .flow-list li {
+        margin: 0.5rem 0;
+      }
+
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 0.9rem;
+        margin-top: 1rem;
+      }
+
+      .gallery-item {
+        grid-column: span 12;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 14px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .gallery-item img {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        object-fit: contain;
+        display: block;
+        background: rgba(0, 0, 0, 0.25);
+      }
+
+      .gallery-item figcaption {
+        padding: 0.65rem 0.8rem;
+        font-size: 0.92rem;
+      }
+
+      .code-panel {
+        margin-top: 0.85rem;
+        border-radius: 14px;
+        padding: 0.95rem;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        background: rgba(0, 0, 0, 0.3);
+        overflow-x: auto;
+      }
+
+      .code-panel code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          "Liberation Mono", "Courier New", monospace;
+        font-size: 0.9rem;
+        line-height: 1.45;
+        white-space: pre;
+      }
+
+      .formula-box {
+        margin-top: 0.75rem;
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        border-radius: 14px;
+        padding: 0.85rem 0.95rem;
+        background: rgba(255, 255, 255, 0.05);
+      }
+
+      .formula-box ul {
+        margin: 0.5rem 0 0 1.1rem;
+      }
+
+      .formula-box li {
+        margin: 0.35rem 0;
+      }
+
+      .pdf-viewer {
+        margin-top: 0.85rem;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .pdf-viewer iframe {
+        width: 100%;
+        height: 650px;
+        border: 0;
+        display: block;
+      }
+
+      @media (min-width: 860px) {
+        .summary-card {
+          grid-column: span 4;
+        }
+
+        .gallery-item {
+          grid-column: span 6;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .pdf-viewer iframe {
+          height: 460px;
+        }
+      }
+    </style>
   </head>
+
   <body>
     <nav class="navbar" aria-label="Primary">
       <div class="nav-container">
@@ -48,38 +175,158 @@
       <div class="container">
         <header class="page-hero reveal">
           <p class="eyebrow">Weekly Progress</p>
-          <h1>Week 12 - Project Progress</h1>
+          <h1>Week 12 - Tri-temporal MSI Validation and Change Mapping</h1>
           <p class="lead">
-            Placeholder summary for Week 12. Replace this with the key focus of
-            the week.
+            This week focused on validating Sentinel-2 MSI triplets and producing
+            robust change masks from index-difference signals with clean export-ready outputs.
           </p>
         </header>
 
-        <section class="week-grid">
-          <article class="card reveal">
-            <h2>Objectives</h2>
-            <p>Placeholder text describing the goals for Week 12.</p>
-          </article>
+        <section class="section" id="week12-overview" aria-label="Week 12 dashboard">
+          <div class="section-heading">
+            <p class="eyebrow">Dashboard</p>
+            <h2>What was achieved</h2>
+            <p class="lead">A compact summary of data inputs, processing strategy, and resulting artifacts.</p>
+          </div>
 
-          <article class="card reveal">
-            <h2>Work Done</h2>
-            <p>Placeholder text summarizing completed tasks and activities.</p>
-          </article>
+          <div class="summary-grid">
+            <article class="summary-card reveal">
+              <h3>Data Input</h3>
+              <p>Sentinel-2 MSI triplets organized as BEFORE, ON, and AFTER scenes for each location.</p>
+            </article>
 
-          <article class="card reveal">
-            <h2>Tools / Methods Used</h2>
-            <p>Placeholder text listing software, datasets, or methodologies.</p>
-          </article>
+            <article class="summary-card reveal">
+              <h3>Processing Logic</h3>
+              <p>NDVI and NDWI delta analysis with Otsu thresholding and morphology-based cleanup.</p>
+            </article>
 
-          <article class="card reveal">
-            <h2>Results / Observations</h2>
-            <p>Placeholder text highlighting findings or interim outputs.</p>
-          </article>
+            <article class="summary-card reveal">
+              <h3>Main Outputs</h3>
+              <p>GeoTIFF and PNG products including index maps, temporal change masks, and CVA magnitude views.</p>
+            </article>
+          </div>
+        </section>
 
-          <article class="card reveal">
-            <h2>Next Week Plan</h2>
-            <p>Placeholder text outlining the plan for the next week.</p>
-          </article>
+        <section class="section" id="pipeline" aria-label="Workflow pipeline">
+          <div class="section-heading">
+            <p class="eyebrow">Pipeline</p>
+            <h2>Execution flow used in the notebook</h2>
+            <p class="lead">The sequence below was followed for each triplet to keep processing repeatable.</p>
+          </div>
+
+          <ol class="flow-list reveal">
+            <li>Validate triplet completeness and confirm Sentinel-2 band mapping consistency.</li>
+            <li>Inspect RGB and false-color composites for quick temporal quality checks.</li>
+            <li>Calculate NDVI and NDWI for BEFORE, ON, and AFTER timestamps.</li>
+            <li>Compute delta maps using BEFORE as the baseline reference.</li>
+            <li>Segment change with Otsu thresholding and refine with morphological filtering.</li>
+            <li>Separate persistent and transient change behavior using ON and AFTER masks.</li>
+            <li>Export final rasters and image previews for downstream dataset packaging.</li>
+          </ol>
+        </section>
+
+        <section class="section" id="evidence-gallery" aria-label="Evidence gallery">
+          <div class="section-heading">
+            <p class="eyebrow">Visual Evidence</p>
+            <h2>Generated result panels</h2>
+            <p class="lead">Representative outputs collected from the processing run.</p>
+          </div>
+
+          <div class="gallery-grid">
+            <figure class="gallery-item reveal">
+              <img src="assets/week8_triplet_rgb_falsecolor.png" alt="RGB and false-color comparisons for tri-temporal MSI triplets" loading="lazy" />
+              <figcaption><strong>RGB and false color:</strong> rapid scene-level temporal inspection.</figcaption>
+            </figure>
+
+            <figure class="gallery-item reveal">
+              <img src="assets/week8_ndvi_ndwi_maps.png" alt="NDVI and NDWI maps across before on and after timestamps" loading="lazy" />
+              <figcaption><strong>Index surfaces:</strong> NDVI and NDWI maps across the three timestamps.</figcaption>
+            </figure>
+
+            <figure class="gallery-item reveal">
+              <img src="assets/week8_band_inspection_grid.png" alt="Band inspection panel for selected MSI channels" loading="lazy" />
+              <figcaption><strong>Band inspection:</strong> channel-level validation prior to index computation.</figcaption>
+            </figure>
+
+            <figure class="gallery-item reveal">
+              <img src="assets/week8_ndvi_change_masks.png" alt="NDVI delta and change masks with temporal split" loading="lazy" />
+              <figcaption><strong>NDVI mask outputs:</strong> delta responses and temporal change separation.</figcaption>
+            </figure>
+
+            <figure class="gallery-item reveal">
+              <img src="assets/week8_ndwi_change_masks.png" alt="NDWI delta and change mask outputs" loading="lazy" />
+              <figcaption><strong>NDWI mask outputs:</strong> moisture-sensitive change detection results.</figcaption>
+            </figure>
+
+            <figure class="gallery-item reveal">
+              <img src="assets/week8_cva_magnitude.png" alt="CVA magnitude visualization and thresholded mask" loading="lazy" />
+              <figcaption><strong>CVA magnitude:</strong> additional multi-spectral change signal.</figcaption>
+            </figure>
+
+            <figure class="gallery-item reveal">
+              <img src="assets/week8_export_outputs_preview.png" alt="Preview of exported GeoTIFF and PNG outputs" loading="lazy" />
+              <figcaption><strong>Export preview:</strong> final output set prepared for model input and archive.</figcaption>
+            </figure>
+          </div>
+        </section>
+
+        <section class="section" id="technical-core" aria-label="Technical core">
+          <div class="section-heading">
+            <p class="eyebrow">Technical Core</p>
+            <h2>Index equations and mask derivation logic</h2>
+            <p class="lead">Core equations and reduced pseudocode used to derive temporal masks.</p>
+          </div>
+
+          <div class="formula-box reveal">
+            <strong>Index definitions</strong>
+            <ul>
+              <li><strong>NDVI</strong> = (NIR - Red) / (NIR + Red)</li>
+              <li><strong>NDWI</strong> = (Green - NIR) / (Green + NIR)</li>
+            </ul>
+          </div>
+
+          <pre class="code-panel reveal"><code>// Reduced tri-temporal mask logic
+
+d_on = idx_on - idx_before
+d_after = idx_after - idx_before
+
+mask_on = Otsu(abs(d_on))
+mask_after = Otsu(abs(d_after))
+
+mask_on = clean(mask_on)
+mask_after = clean(mask_after)
+
+persistent = mask_on AND mask_after
+transient = mask_on AND (NOT mask_after)</code></pre>
+        </section>
+
+        <section class="section" id="notes-and-next" aria-label="Notes and next steps">
+          <div class="section-heading">
+            <p class="eyebrow">Notes</p>
+            <h2>Observations, resource, and next-week direction</h2>
+            <p class="lead">Practical takeaways from this run and continuation actions.</p>
+          </div>
+
+          <div class="summary-grid">
+            <article class="summary-card reveal">
+              <h3>Observations</h3>
+              <p>False-color views highlighted vegetation and moisture shifts better than RGB-only checks, while Otsu remained a strong adaptive baseline.</p>
+            </article>
+
+            <article class="summary-card reveal">
+              <h3>Resource</h3>
+              <p>Notebook export is available below for direct review of the full execution sequence and outputs.</p>
+            </article>
+
+            <article class="summary-card reveal">
+              <h3>Next Steps</h3>
+              <p>Run additional triplets, compare with manual annotations, and finalize derived features for baseline modeling.</p>
+            </article>
+          </div>
+
+          <div class="pdf-viewer reveal">
+            <iframe src="Papers/colab.pdf" title="Week 12 notebook PDF"></iframe>
+          </div>
         </section>
       </div>
     </main>
