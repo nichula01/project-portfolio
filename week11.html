@@ -11,7 +11,122 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/style.css" />
+    <style>
+      .content-stack {
+        display: grid;
+        gap: 1.25rem;
+      }
+
+      .content-block {
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .content-block:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+
+      .content-block h3 {
+        margin-bottom: 0.6rem;
+      }
+
+      .content-block ul,
+      .content-block ol {
+        margin-left: 1.2rem;
+      }
+
+      .content-block ul {
+        list-style: disc;
+      }
+
+      .content-block ol {
+        list-style: decimal;
+      }
+
+      .content-block li {
+        margin: 0.35rem 0;
+      }
+
+      .pdf-viewer {
+        margin-top: 0.85rem;
+        border-radius: 14px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        background: rgba(0, 0, 0, 0.2);
+      }
+
+      .pdf-viewer iframe {
+        width: 100%;
+        height: 620px;
+        border: 0;
+        display: block;
+      }
+
+      .sample-triplet-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.25rem;
+        margin-top: 1rem;
+      }
+
+      .triplet-card {
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 16px;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .triplet-card h4 {
+        margin-bottom: 0.85rem;
+        font-size: 1rem;
+      }
+
+      .triplet-images {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.9rem;
+      }
+
+      .triplet-images figure {
+        margin: 0;
+        background: rgba(0, 0, 0, 0.16);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        overflow: hidden;
+      }
+
+      .triplet-images img {
+        width: 100%;
+        height: 230px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .triplet-images figcaption {
+        padding: 0.65rem 0.8rem;
+        font-size: 0.92rem;
+        text-align: center;
+      }
+
+      @media (max-width: 992px) {
+        .triplet-images {
+          grid-template-columns: 1fr;
+        }
+
+        .triplet-images img {
+          height: auto;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .pdf-viewer iframe {
+          height: 440px;
+        }
+      }
+    </style>
   </head>
+
   <body>
     <nav class="navbar" aria-label="Primary">
       <div class="nav-container">
@@ -50,36 +165,262 @@
           <p class="eyebrow">Weekly Progress</p>
           <h1>Week 11 - Project Progress</h1>
           <p class="lead">
-            Placeholder summary for Week 11. Replace this with the key focus of
-            the week.
+            This week focused on expanding the dataset from tri-temporal flood imagery
+            to bi-temporal tsunami and wildfire image pairs with binary change masks,
+            while also studying change detection papers to improve dataset structure
+            and benchmark quality.
           </p>
         </header>
 
-        <section class="week-grid">
-          <article class="card reveal">
-            <h2>Objectives</h2>
-            <p>Placeholder text describing the goals for Week 11.</p>
-          </article>
+        <section class="section" id="week11-summary" aria-label="Week 11 highlights">
+          <div class="section-heading">
+            <p class="eyebrow">At a glance</p>
+            <h2>Dataset expansion and sample preparation</h2>
+            <p class="lead">
+              Core progress from hazard-type expansion, image-pair curation, mask preparation,
+              and paper-based learning.
+            </p>
+          </div>
 
-          <article class="card reveal">
-            <h2>Work Done</h2>
-            <p>Placeholder text summarizing completed tasks and activities.</p>
-          </article>
+          <div class="content-stack">
+            <section class="content-block reveal">
+              <h3>What I completed</h3>
+              <ul>
+                <li>Expanded the dataset scope from tri-temporal flood images to bi-temporal tsunami and wildfire images.</li>
+                <li>Organized image pairs into a standard <strong>Before</strong> and <strong>After</strong> format.</li>
+                <li>Prepared corresponding <strong>binary change masks</strong> for supervised change detection use.</li>
+                <li>Collected and arranged a sample wildfire image set from California 2021.</li>
+                <li>Reviewed related change detection papers to improve dataset structure, documentation, and benchmark design.</li>
+              </ul>
+            </section>
 
-          <article class="card reveal">
-            <h2>Tools / Methods Used</h2>
-            <p>Placeholder text listing software, datasets, or methodologies.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Dataset direction</h3>
+              <p>
+                The project moved from a flood-focused tri-temporal setup toward a broader
+                hazard dataset with <strong>bi-temporal</strong> image pairs for
+                <strong>tsunami</strong> and <strong>wildfire</strong> events. This makes
+                the dataset more flexible for standard change detection pipelines that use
+                paired images and a binary mask.
+              </p>
+            </section>
 
-          <article class="card reveal">
-            <h2>Results / Observations</h2>
-            <p>Placeholder text highlighting findings or interim outputs.</p>
-          </article>
+            <section class="content-block reveal">
+              <h3>Current sample set</h3>
+              <p>
+                Below is a sample wildfire set from <strong>California 2021</strong>,
+                showing <strong>Before RGB</strong>, <strong>After RGB</strong>, and the
+                corresponding <strong>Binary Change Mask</strong> for seven collected examples.
+              </p>
+            </section>
+          </div>
+        </section>
 
-          <article class="card reveal">
-            <h2>Next Week Plan</h2>
-            <p>Placeholder text outlining the plan for the next week.</p>
-          </article>
+        <section class="section" id="sample-grid" aria-label="Sample image grid">
+          <div class="section-heading">
+            <p class="eyebrow">Sample images</p>
+            <h2>Collected bi-temporal wildfire examples</h2>
+            <p class="lead">
+              Each triplet contains a before image, after image, and the binary change mask.
+            </p>
+          </div>
+
+          <div class="sample-triplet-grid">
+            <article class="triplet-card reveal">
+              <h4>California 2021 - Sample 1</h4>
+              <div class="triplet-images">
+                <figure>
+                  <img src="assets/California%202021%201%20Before%20RGB.png" alt="California 2021 sample 1 before RGB image" />
+                  <figcaption>Before RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%201%20After%20RGB.png" alt="California 2021 sample 1 after RGB image" />
+                  <figcaption>After RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%201_mask.png" alt="California 2021 sample 1 binary change mask" />
+                  <figcaption>Binary Change Mask</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="triplet-card reveal">
+              <h4>California 2021 - Sample 2</h4>
+              <div class="triplet-images">
+                <figure>
+                  <img src="assets/California%202021%202%20Before%20RGB.png" alt="California 2021 sample 2 before RGB image" />
+                  <figcaption>Before RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%202%20After%20RGB.png" alt="California 2021 sample 2 after RGB image" />
+                  <figcaption>After RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%202_mask.png" alt="California 2021 sample 2 binary change mask" />
+                  <figcaption>Binary Change Mask</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="triplet-card reveal">
+              <h4>California 2021 - Sample 3</h4>
+              <div class="triplet-images">
+                <figure>
+                  <img src="assets/California%202021%203%20Before%20RGB.png" alt="California 2021 sample 3 before RGB image" />
+                  <figcaption>Before RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%203%20After%20RGB.png" alt="California 2021 sample 3 after RGB image" />
+                  <figcaption>After RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%203_mask.png" alt="California 2021 sample 3 binary change mask" />
+                  <figcaption>Binary Change Mask</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="triplet-card reveal">
+              <h4>California 2021 - Sample 4</h4>
+              <div class="triplet-images">
+                <figure>
+                  <img src="assets/California%202021%204%20Before%20RGB.png" alt="California 2021 sample 4 before RGB image" />
+                  <figcaption>Before RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%204%20After%20RGB.png" alt="California 2021 sample 4 after RGB image" />
+                  <figcaption>After RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%204_mask.png" alt="California 2021 sample 4 binary change mask" />
+                  <figcaption>Binary Change Mask</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="triplet-card reveal">
+              <h4>California 2021 - Sample 5</h4>
+              <div class="triplet-images">
+                <figure>
+                  <img src="assets/California%202021%205%20Before%20RGB.png" alt="California 2021 sample 5 before RGB image" />
+                  <figcaption>Before RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%205%20After%20RGB.png" alt="California 2021 sample 5 after RGB image" />
+                  <figcaption>After RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%205_mask.png" alt="California 2021 sample 5 binary change mask" />
+                  <figcaption>Binary Change Mask</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="triplet-card reveal">
+              <h4>California 2021 - Sample 6</h4>
+              <div class="triplet-images">
+                <figure>
+                  <img src="assets/California%202021%206%20Before%20RGB.png" alt="California 2021 sample 6 before RGB image" />
+                  <figcaption>Before RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%206%20After%20RGB.png" alt="California 2021 sample 6 after RGB image" />
+                  <figcaption>After RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%206_mask.png" alt="California 2021 sample 6 binary change mask" />
+                  <figcaption>Binary Change Mask</figcaption>
+                </figure>
+              </div>
+            </article>
+
+            <article class="triplet-card reveal">
+              <h4>California 2021 - Sample 7</h4>
+              <div class="triplet-images">
+                <figure>
+                  <img src="assets/California%202021%207%20Before%20RGB.png" alt="California 2021 sample 7 before RGB image" />
+                  <figcaption>Before RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%207%20After%20RGB.png" alt="California 2021 sample 7 after RGB image" />
+                  <figcaption>After RGB</figcaption>
+                </figure>
+                <figure>
+                  <img src="assets/California%202021%207_mask.png" alt="California 2021 sample 7 binary change mask" />
+                  <figcaption>Binary Change Mask</figcaption>
+                </figure>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="paper-learning" aria-label="Paper learning">
+          <div class="section-heading">
+            <p class="eyebrow">Paper study</p>
+            <h2>Learning points from related change detection papers</h2>
+            <p class="lead">
+              Reading notes were translated into practical improvements for dataset design,
+              organization, and future benchmarking.
+            </p>
+          </div>
+
+          <div class="content-stack">
+            <section class="content-block reveal">
+              <h3>Key learning points</h3>
+              <ul>
+                <li>Use a clear and consistent triplet structure: <strong>before image</strong>, <strong>after image</strong>, and <strong>binary change mask</strong>.</li>
+                <li>Keep preprocessing and naming conventions standardized so the dataset is easy to use in training and evaluation pipelines.</li>
+                <li>Document how masks are created and define change classes carefully to improve reproducibility.</li>
+                <li>Include strong baseline-ready splits and evaluation protocols from the beginning.</li>
+                <li>Show representative visual examples because they help explain the difficulty and value of the dataset.</li>
+                <li>State the event type, acquisition conditions, and possible challenges such as smoke, cloud, seasonal differences, or illumination changes.</li>
+              </ul>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>How the papers helped this week</h3>
+              <div class="triplet-table-wrapper reveal" style="margin-top: 0.8rem;">
+                <table class="triplet-table">
+                  <thead>
+                    <tr>
+                      <th>Paper</th>
+                      <th>Why it was useful</th>
+                      <th>Practice adopted</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><strong>whucd.pdf</strong></td>
+                      <td>Helped understand how a benchmark-style change detection dataset should be organized and presented.</td>
+                      <td>Adopted the paired-image plus mask structure and emphasized visual sample quality.</td>
+                    </tr>
+                    <tr>
+                      <td><strong>Detection_of_Urban_Built-Up_Area_Change_From_Senti.pdf</strong></td>
+                      <td>Showed how temporal image comparison can be framed clearly for real-world land-cover change analysis.</td>
+                      <td>Improved thinking on documentation, event-based change interpretation, and dataset usability for downstream models.</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Paper 1 (inline)</h3>
+              <div class="pdf-viewer">
+                <iframe src="Papers/whucd.pdf#view=FitH" title="WHU Change Detection paper"></iframe>
+              </div>
+            </section>
+
+            <section class="content-block reveal">
+              <h3>Paper 2 (inline)</h3>
+              <div class="pdf-viewer">
+                <iframe
+                  src="Papers/Detection_of_Urban_Built-Up_Area_Change_From_Senti.pdf#view=FitH"
+                  title="Detection of Urban Built-Up Area Change paper"
+                ></iframe>
+              </div>
+            </section>
+          </div>
         </section>
       </div>
     </main>
